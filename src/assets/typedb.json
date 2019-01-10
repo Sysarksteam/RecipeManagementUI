@@ -1,0 +1,15 @@
+[{
+    "typeid": "001",
+    "typename":"text"
+  
+},
+{
+    "typeid": "002",
+    "typename":"varchar"
+  
+},
+{
+    "typeid": "003",
+    "typename":"decimal"
+  
+}]

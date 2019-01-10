@@ -1,0 +1,18 @@
+[{
+    "propertyid": "1",
+   "propertyname": "textbox",
+    "length": "6",
+    "datatype": "varchar"
+},
+{
+   "propertyid": "2",
+   "propertyname": "decimal",
+    "length": "4",
+    "datatype": "integer"
+},
+{
+   "propertyid": "3",
+   "propertyname": "dropdown",
+    "length": "6",
+    "datatype": "varchar"
+}]

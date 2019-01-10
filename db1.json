@@ -1,0 +1,42 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "username": "seb",
+      "password": "abc",
+      "firstname": "Sebastian",
+      "lastname": "Eschweiler",
+      "rolename" : "manager",
+      "email": "sebastian@codingthesmartway.com"
+    },
+    {
+      "id": 2,
+      "username": "sejb",
+      "password": "abc",
+      "first_name": "Sebastian",
+      "last_name": "Eschweiler",
+      "rolename" : "manager",
+      "email": "sebastian@codingthesmartway.com"
+    }
+  ],
+  "usersrole": [
+    {
+      "roleid": 1,
+      "rolename": "manager",
+      "access": "read",
+      "permission": "dashboard"
+    },
+    {
+      "roleid": 2,
+      "rolename": "clerk",
+      "access": "write",
+      "permission": "usermanagement"
+    },
+    {
+      "id": 3,
+      "rolename": "attender",
+      "access": "write",
+      "permission": "dashboard"
+    }
+  ]
+}

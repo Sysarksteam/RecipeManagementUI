@@ -1,0 +1,18 @@
+[{
+    "roleid": "1",
+   "RoleName": "clerk",
+    "Access": "read",
+    "Permission": "dashboard"
+},
+{
+    "roleid": "1",
+   "RoleName": "recipe",
+    "Access": "user",
+    "Permission": "respuser"
+},
+{
+   "roleid": "001",
+   "RoleName": "recipe",
+    "Access": "user",
+    "Permission": "respuser"
+}]

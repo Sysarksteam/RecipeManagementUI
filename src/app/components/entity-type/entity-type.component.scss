@@ -1,0 +1,44 @@
+.mat-elevation-z8 {
+    transition: none !important;
+    box-shadow: none !important;
+}
+
+.card-header{
+  background-color: chocolate;
+}
+
+#btnSearch,
+#btnClear{
+    display: inline-block;
+    vertical-align: top;
+}
+
+#outer
+{
+    width:100%;
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
+}
+// // .card {
+// //   min-width: 80%;
+// // }
+
+// .example-container {
+//   display: flex;
+//   flex-direction: column;
+//   max-height: 500px;
+//   min-width: 100%;
+// }
+
+// .mat-table {
+//   overflow: auto;
+//   max-height: 500px;
+// }
+
+// a {
+//   cursor: pointer;
+// }
+

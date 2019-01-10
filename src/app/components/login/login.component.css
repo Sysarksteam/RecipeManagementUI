@@ -1,0 +1,13 @@
+.card {
+  width: 30%;
+  margin: 100px auto;
+}
+
+.card {
+  background:lightblue;
+  opacity: .9;
+  /* border: transparent; */
+}
+
+
+

@@ -1,0 +1,126 @@
+<div class="card">
+  <div class="card-header">
+    Users
+    <button type="button" class="btn btn-primary pull-right" (click)="openModal(template)">Add User</button>
+    <!--<button mat-raised-button (click)="openCreate()" class="btn btn-primary pull-right">Add User</button>-->
+  </div>
+  
+ 
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add User</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+ <form #userForm="ngForm" (ngSubmit)="onsubmit()">
+   <div class="row">
+    <div class="form-group col-sm-6" >
+      <label>FirstName</label>
+      <input type="text" [(ngModel)]="userModel.firstname" class="form-control" id="firstname" placeholder="Enter firstname" name="firstname">
+    </div>
+     <div class="form-group col-sm-6">
+      <label>LastName</label>
+      <input type="text" [(ngModel)]="userModel.lastname" class="form-control" id="lastname" placeholder="Enter lastname" name="lastname">
+    </div>
+    </div>
+    <div class="row">
+    <div class="form-group col-sm-6">
+      <label>username</label>
+      <input type="text" [(ngModel)]="userModel.username" class="form-control" id="username" placeholder="Enter username" name="username">
+    </div>
+     <div class="form-group col-sm-6">
+      <label>Email</label>
+      <input type="email"  class="form-control" id="email" placeholder="Enter Email" name="email">
+    </div>
+    </div>
+    <div class= "row">
+     <div class="form-group col-sm-6" >
+      <label>Phone</label>
+      <input type="tel"  class="form-control " id="phone" placeholder="Enter Phone Number" name="phone">
+    </div>
+       <div class="form-group col-sm-6">
+          <label>Role name</label>
+        <ng-multiselect-dropdown
+      [placeholder]="'--Select Role--'"
+      [data]="dropdownList"
+      [(ngModel)]="selectedItems"
+      [settings]="dropdownSettings"
+      (onSelect)="onItemSelect($event)"
+      (onSelectAll)="onSelectAll($event)">
+        </ng-multiselect-dropdown>
+        </div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="add">ADD</button>
+    </form>
+  </div>
+</ng-template>
+  
+<table class="table table-bordered">
+  <thead>
+    <tr align="center">
+      <th *ngFor="let displayedColumn of displayedColumns">
+        {{displayedColumn}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let db of dataSource" >
+      <td align="center">{{db.FirstName}}</td>
+      <td align="center">{{db.LastName}}</td>
+      <td align="center">{{db.UserName}}</td>
+      <td align="center">{{db.UserEmail}}</td>
+      <td align="center">{{db.UserPhone}}</td>
+      <td>
+        <div class="row" >
+          <div class="col-sm-12 text-center">
+        <button class="btn btn-info btn-md " id="btnSearch" (click)="openUpdate(element)" >Edit</button>
+        <button class="btn btn-danger btn-md" id="btnClear" (click)="deleteUser(element)">Delete</button>
+      </div>
+      </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+  <!--<div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="firstname">
+          <mat-header-cell *matHeaderCellDef> FirstName </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.First_name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="lastname">
+          <mat-header-cell *matHeaderCellDef> LastName </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Last_name}} </mat-cell>
+        </ng-container>
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef> UserName </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.User_name}} </mat-cell>
+      </ng-container>-->
+      <!--<ng-container matColumnDef="phone">
+          <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Phone_number}} </mat-cell>
+        </ng-container>-->
+        <!--<ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> E-Mail </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Email_id}} </mat-cell>
+          </ng-container>-->
+      <!-- <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
+      </ng-container> -->
+      <!--<ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef >Actions</mat-header-cell>
+        <mat-cell *matCellDef="let element" >
+          <button  mat-button (click)="openUpdate(element)" color="primary">Edit</button>
+          <button mat-button (click)="deleteUser(element)" color="warn">Delete</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+  </div>-->
+
+</div>

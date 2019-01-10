@@ -1,0 +1,37 @@
+<div class="example-container">
+  <h1 mat-dialog-title style="text-align: center">Update User</h1>
+  <div mat-dialog-content >
+    <form [formGroup]="updateForm" >
+        <mat-form-field >
+            <input matInput placeholder="Firstname" type="text" #firstname   formControlName="firstname">
+            <!-- <mat-error *ngIf="updateForm.controls['firstname'].errors.required">Please enter a valid Firstname.</mat-error> -->
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput placeholder="Lastname" type="text"  #lastname  formControlName="lastname">
+            <!-- <mat-error *ngIf="updateForm.controls['lastname'].errors.required">Please enter a valid Lastname.</mat-error> -->
+          </mat-form-field>
+      <mat-form-field >
+        <input matInput placeholder="Username" type="text" readonly  #username formControlName="username">
+        <!-- <mat-error *ngIf="updateForm.controls['username'].errors">Please enter a valid Username.</mat-error> -->
+      </mat-form-field>
+      <mat-form-field >
+          <input matInput placeholder="Phone" type="text"   #phonenumber  formControlName="phonenumber">
+          <!-- <mat-error *ngIf="updateForm.controls['phonenumber'].errors.required">Please enter a valid PhoneNumber.</mat-error> -->
+        </mat-form-field>
+        <mat-form-field >
+            <input matInput placeholder="Email" type="email"     #email formControlName="email">
+            <!-- <mat-error *ngIf="updateForm.controls['email'].errors.required">Please enter a valid Email.</mat-error> -->
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput placeholder="Password" type="password"  #password   formControlName="password">
+            <!-- <mat-error *ngIf="updateForm.controls['password'].errors.required">Please enter a valid Email.</mat-error> -->
+            </mat-form-field>
+
+
+        <button mat-raised-button (click)="updateUser(firstname.value, lastname.value, username.value, phonenumber.value, email.value, password.value)" [disabled]="updateForm.pristine || updateForm.invalid" type="submit" color="primary">Save</button>
+        <button mat-raised-button   (click)="onNoClick()" color="accent">Cancel</button>
+
+    </form>
+  </div>
+  </div>
+

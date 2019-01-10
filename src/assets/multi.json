@@ -1,0 +1,20 @@
+[{
+    "roleid": "001",
+    "rolename":"Clerk"
+  
+},
+{
+    "roleid": "02",
+    "rolename":"Admin"
+  
+},
+{
+    "roleid": "003",
+    "rolename":"Manager"
+  
+},
+{
+    "roleid": "004",
+    "rolename":"Attender"
+  
+}]
