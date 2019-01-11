@@ -7,7 +7,7 @@ import {DataSource} from '@angular/cdk/table';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators , FormControl } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 //import { Component,  } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -140,16 +140,24 @@ arrdbjson: string [];
 
   createForm: FormGroup;
   private formSubmitAttempt: boolean;
-
+ Rolename = new FormControl();
   public event: EventEmitter<any> = new EventEmitter();
   toppingList  = ['Clerk','Manager','Admin','GM'];
- 
+ data34: any[]=[];
+  _data1: any;
  getUserRoles(){
 
    // let record = this.addUser.getUserRole();
     this.addUser.getUserRole().subscribe(res => {
-      let roles = res[0].RoleName;
-      console.log(res)
+      // let roles = res[0].RoleName;
+      // console.log(res)
+       this._data1 = res;
+    // console.log(_data1)
+     let i=0;
+    //  _data1.forEach(element => {
+    //    this.data34[i++] = element.RoleName;
+    //  });
+    //  console.log(this.data34);
     });
    
  }
@@ -194,7 +202,7 @@ console.log(createForm);
   }
   
   ngOnInit(){
-  
+  this.getUserRoles();
   }
  }
 
