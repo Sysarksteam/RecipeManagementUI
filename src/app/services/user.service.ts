@@ -17,12 +17,12 @@ options;
 login(userName) {
   //console.log(userName);
   //console.log( this.http.get(this.domain + 'api/UserRole/ValidateUser?userName=', userName));
-  return this.http.get(this.domain + 'api/UserRole/ValidateUser?userName='+ userName)
+  return this.http.get(this.domain + 'api/UserTbls/ValidateUser?userName='+ userName)
   
 }
 
-loginpass(userId,password){
-  return this.http.get(this.domain + '/api/UserRole/ValidatePassword?UserId=' + userId + '&password=' + password);
+loginpass(passWord,userId){  
+  return this.http.get(this.domain + '/api/UserTbls/ValidatePassword?passWord=' + passWord + '&userId=' + userId);
 }
 
 // Function to logout

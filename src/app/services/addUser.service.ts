@@ -7,8 +7,6 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class AddUserService {
 
-  // private uri = 'https://wildseve-node.appspot.com/';
-  //private uri = 'http://192.168.0.128/';
   //private uri = './assets/dbjson.json';
   private uri = 'http://192.168.0.128/';
 
@@ -17,17 +15,20 @@ export class AddUserService {
   }
 
 
-  createUser(Firstname, LastName, UserName,RoleName)
+  createUser(Firstname, LastName, UserName,UserEmail,UserPhone, UserPwd, RoleName)
   {
     const add_user  = {
       Firstname: Firstname,
       LastName: LastName,
       UserName: UserName,
-      RoleName: RoleName
+      UserEmail: UserEmail,
+      UserPhone: UserPhone,
+      RoleName: RoleName,
+      UserPwd: UserPwd
       
      // roleid: roleid
     };
-      return this.http.post(this.uri + 'createuser', add_user);
+      return this.http.post(this.uri + 'api/UserTbls/PostUserRoleTbl', add_user);
 
   }
 
@@ -50,7 +51,7 @@ export class AddUserService {
   }
 
   deleteUser(id): Observable<any> {
-    return this.http.get(this.uri + `deleteuser/${id}`);
+    return this.http.delete(this.uri + `api/UserTbls/DeleteUserTbl/${id}`);
   }
 
 }

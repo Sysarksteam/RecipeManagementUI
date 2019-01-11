@@ -52,11 +52,11 @@ export class LoginComponent implements OnInit {
     // Create user object from user's input
     const user = {
       username: this.form.get('username').value, // Username input field
-      password: this.form.get('password').value // Password input field
+      passWord: this.form.get('password').value // Password input field
     };
 
     let username =  this.form.get('username').value;
-    let password =  this.form.get('password').value;
+    let passWord =  this.form.get('password').value;
     // Function to send login data to API
     this.authService.login(username).subscribe((data: any) => {
       // Check if response was a success or error
@@ -67,9 +67,9 @@ export class LoginComponent implements OnInit {
         this.enableForm(); // Enable form for editting
       }
       else{
-         console.log(data);
-      this.authService.loginpass(data[0].UserId,password).subscribe(res => {
-        console.log(res);
+        // console.log(data);
+      this.authService.loginpass(passWord,data).subscribe(res => {
+       // console.log(res);
         if(res == -1){
         this.messageClass = 'alert alert-danger'; // Set bootstrap error class
         this.message = 'Password incorrect';
