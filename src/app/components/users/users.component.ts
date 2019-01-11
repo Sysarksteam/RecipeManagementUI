@@ -27,7 +27,7 @@ export class UsersComponent implements OnInit {
   modalRef: BsModalRef;
    users: any;
 //form: FormGroup;
- rolename =['clerk','manager'];
+ //rolename =['clerk','manager'];
 // _url ='';
  //title = 'JSON to Table Example';
   
@@ -48,7 +48,7 @@ arrdbjson: string [];
   displayedColumns = ['Firstname', 'Lastname', 'Username', 'UserEmail','UserPhone', 'Actions'];
   dataSource: any;
   
- //userModel = new user('firstname','lastname','username','rolename');
+
 
   openCreate(): void {
     const dialogRef = this.dialog.open(UserCreateComponent, {
@@ -140,10 +140,11 @@ arrdbjson: string [];
 
   createForm: FormGroup;
   private formSubmitAttempt: boolean;
- Rolename = new FormControl();
+ roles = new FormControl();
   public event: EventEmitter<any> = new EventEmitter();
   toppingList  = ['Clerk','Manager','Admin','GM'];
  data34: any[]=[];
+ data35: any[]=[];
   _data1: any;
  getUserRoles(){
 
@@ -154,10 +155,11 @@ arrdbjson: string [];
        this._data1 = res;
     // console.log(_data1)
      let i=0;
-    //  _data1.forEach(element => {
-    //    this.data34[i++] = element.RoleName;
-    //  });
-    //  console.log(this.data34);
+     this._data1.forEach(element => {
+       this.data34[i++] = element.RoleName;
+     });
+
+      console.log(this.data34);
     });
    
  }
@@ -175,7 +177,7 @@ arrdbjson: string [];
     UserEmail: ['', Validators.required],
     UserPhone: ['',Validators.required],
     UserPwd: ['', Validators.required],
-    RoleName: ['', Validators.required]
+    roles: ['', Validators.required]
    // roleid: ['', Validators.required]
     })
   }
@@ -194,7 +196,7 @@ arrdbjson: string [];
   createUser(createForm){
 
 console.log(createForm);
-    // this.addUser.createUser(Firstname, Lastname, UserName, UserPhone, UserEmail, UserPwd,RoleName).subscribe((res) => {
+    // this.addUser.createUser(createForm).subscribe((res) => {
     //   console.log(res);
     //   this.dialogRef.close();
     //   this.router.navigate['/users']

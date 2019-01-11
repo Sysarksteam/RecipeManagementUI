@@ -15,20 +15,10 @@ export class AddUserService {
   }
 
 
-  createUser(Firstname, LastName, UserName,UserEmail,UserPhone, UserPwd, RoleName)
+  createUser(createForm)
   {
-    const add_user  = {
-      Firstname: Firstname,
-      LastName: LastName,
-      UserName: UserName,
-      UserEmail: UserEmail,
-      UserPhone: UserPhone,
-      RoleName: RoleName,
-      UserPwd: UserPwd
-      
-     // roleid: roleid
-    };
-      return this.http.post(this.uri + 'api/UserTbls/PostUserRoleTbl', add_user);
+    
+      return this.http.post(this.uri + 'api/UserTbls/PostUserRoleTbl', createForm);
 
   }
 
@@ -57,10 +47,7 @@ export class AddUserService {
 
   deleteUser(id): Observable<any> {
     
-    const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-    return this.http.delete(this.uri + 'api/UserTbls/DeleteUserTbl/' + id, httpOptions);
+    return this.http.delete(this.uri + 'api/UserTbls/DeleteUserTbl/' + id);
   
   }
 
