@@ -38,28 +38,25 @@
             Please fill this field
           </mat-error>
           </mat-form-field>
-          <!--<mat-form-field>
-            <mat-select placeholder="Category" formControlName="roleid" #category>
-              <mat-option value="1">Admin</mat-option>
-              <mat-option value="2">User</mat-option>-->
-              <!-- <mat-option value="3">FA</mat-option> -->
-            <!--</mat-select>
-        </mat-form-field>-->
+        <mat-form-field>
+  <mat-select placeholder="Role" #RoleName formControlName="RoleName" multiple>
+    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+  </mat-select>
+</mat-form-field>
    
-<ng-multiselect-dropdown formControlName="RoleName"
+<!--<ng-multiselect-dropdown formControlName="RoleName"
   [placeholder]="'custom placeholder'"
   [data]="dropdownList"
   [(ngModel)]="selectedItems"
   [settings]="dropdownSettings"
   (onSelect)="onItemSelect($event)"
-  (onSelectAll)="onSelectAll($event)"
->
+  (onSelectAll)="onSelectAll($event)">
 </ng-multiselect-dropdown>
-   
+   -->
  
 
       <button mat-raised-button (click)="createUser(createForm.value)" [disabled]="createForm.pristine || createForm.invalid" type="submit" color="primary">Save</button>
-      <button mat-raised-button   (click)="onNoClick()" color="accent">Cancel</button>
+      <button mat-raised-button   (click)="getUserRoles()" color="accent">Cancel</button>
 
   </form>
 </div>

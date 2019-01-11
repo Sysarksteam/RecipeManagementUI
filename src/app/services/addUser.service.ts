@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { AddUser } from './../models/addUser';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AddUserService {
@@ -50,8 +50,18 @@ export class AddUserService {
     return this.http.get(this.uri + 'api/UserTbls/GetUserTbls');
   }
 
+  getUserRole():Observable<any> {
+    return this.http.get(this.uri + 'api/UserTbls/GetRoleTbls');
+  }
+  
+
   deleteUser(id): Observable<any> {
-    return this.http.delete(this.uri + `api/UserTbls/DeleteUserTbl/${id}`);
+    
+    const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+    return this.http.delete(this.uri + 'api/UserTbls/DeleteUserTbl/' + id, httpOptions);
+  
   }
 
 }

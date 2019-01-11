@@ -47,6 +47,7 @@ arrdbjson: string [];
 
   displayedColumns = ['Firstname', 'Lastname', 'Username', 'UserEmail','UserPhone', 'Actions'];
   dataSource: any;
+  
  //userModel = new user('firstname','lastname','username','rolename');
 
   openCreate(): void {
@@ -102,14 +103,17 @@ arrdbjson: string [];
   }
   
 
-
   deleteUser(data) {
   //   if(user.User_Role_Id === "1"){
   //     alert("This is admin. You can't delete this user.")
   //   }
   //   else{
  //   alert("Do you wan't delete " + user.User_name);
-    this.addUser.deleteUser(data.UserId).subscribe(() => {
+
+    this.addUser.deleteUser(data.UserId).subscribe(res => {
+
+      console.log("success");
+      console.log(res);
       this.fetchUser();
     });
   }
@@ -138,9 +142,17 @@ arrdbjson: string [];
   private formSubmitAttempt: boolean;
 
   public event: EventEmitter<any> = new EventEmitter();
-dropdownList = [];
-  selectedItems = [];
-  dropdownSettings = {};
+  toppingList  = ['Clerk','Manager','Admin','GM'];
+ 
+ getUserRoles(){
+
+   // let record = this.addUser.getUserRole();
+    this.addUser.getUserRole().subscribe(res => {
+      let roles = res[0].RoleName;
+      console.log(res)
+    });
+   
+ }
   constructor(
     public dialogRef: MatDialogRef<UsersComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -171,43 +183,20 @@ dropdownList = [];
     this.dialogRef.close();
   }
 
-  createUser(Firstname, Lastname, UserName, UserPhone, UserEmail, UserPwd,RoleName){
+  createUser(createForm){
 
-    this.addUser.createUser(Firstname, Lastname, UserName, UserPhone, UserEmail, UserPwd,RoleName).subscribe((res) => {
-      console.log(res);
-      this.dialogRef.close();
-      this.router.navigate['/users']
-      });
+console.log(createForm);
+    // this.addUser.createUser(Firstname, Lastname, UserName, UserPhone, UserEmail, UserPwd,RoleName).subscribe((res) => {
+    //   console.log(res);
+    //   this.dialogRef.close();
+    //   this.router.navigate['/users']
+    //   });
   }
   
   ngOnInit(){
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Clerk' },
-      { item_id: 2, item_text: 'Manager' },
-      { item_id: 3, item_text: 'Admin' },
-      { item_id: 4, item_text: 'GM' },
-      { item_id: 5, item_text: 'Attender' }
-    ];
-    this.selectedItems = [
-    ];
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
+  
   }
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
-  }
-
-}
+ }
 
 // @Component({
 //     templateUrl: 'users-update.component.html',
