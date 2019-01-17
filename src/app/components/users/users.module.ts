@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UsersComponent  } from './users.component';
-import { UserCreateComponent, MatConfirmDialogComponent, } from './users.component'
+import { UserCreateComponent, MatConfirmDialogComponent, UserUpdateComponent } from './users.component'
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 //import { UserCreateComponent } from './users.component';
@@ -24,7 +24,7 @@ NgMultiSelectDropDownModule.forRoot(),
 ModalModule.forRoot(),
 CommonModule
   ],
-  declarations: [ UsersComponent, UserCreateComponent ],
-  entryComponents: [UserCreateComponent]
+  declarations: [ UsersComponent, UserCreateComponent,UserUpdateComponent ],
+  entryComponents: [UserCreateComponent, UserUpdateComponent]
 })
 export class UsersModule { }

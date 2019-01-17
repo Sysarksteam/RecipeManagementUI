@@ -63,23 +63,23 @@ arrdbjson: string [];
    }
 
 
-  // openUpdate(data): void {
-  //   let dialogRef = this.dialog.open(UserUpdateComponent, {
-  //     width: '400px',
-  //     data: data
-  //   });
+  openUpdate(data): void {
+    let dialogRef = this.dialog.open(UserUpdateComponent, {
+      width: '400px',
+      data: data
+    });
 
-  //   dialogRef.afterClosed().subscribe(() => {
-  //     this.fetchUser();
-  //   });
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchUser();
+    });
 
-  // }
+  }
 
   fetchUser() {
     this.users = this.addUser.getUser()
     this.users.subscribe((data) => {
       this.dataSource = data;
-      //console.log(this.dataSource);
+      console.log(this.dataSource);
     })
   }
 
@@ -102,16 +102,19 @@ arrdbjson: string [];
     this.dialog.closeAll();
   }
   
-
+alertCtrl : any;
+alert:any;
   deleteUser(data) {
-  //   if(user.User_Role_Id === "1"){
-  //     alert("This is admin. You can't delete this user.")
-  //   }
-  //   else{
- //   alert("Do you wan't delete " + user.User_name);
+ // console.log(data)
+   alert("Do you wan't delete ");
+ 
 
-    this.addUser.deleteUser(data.UserId).subscribe(res => {
+      let UserId = {
+        "UserId": data
+      }
 
+    this.addUser.deleteUser(UserId).subscribe(res => {
+    
       console.log("success");
       console.log(res);
       this.fetchUser();
@@ -196,11 +199,11 @@ arrdbjson: string [];
   createUser(createForm){
 
 console.log(createForm);
-    // this.addUser.createUser(createForm).subscribe((res) => {
-    //   console.log(res);
-    //   this.dialogRef.close();
-    //   this.router.navigate['/users']
-    //   });
+    this.addUser.createUser(createForm).subscribe((res) => {
+      console.log(res);
+      this.dialogRef.close();
+      this.router.navigate['/users']
+      });
   }
   
   ngOnInit(){
@@ -208,68 +211,72 @@ console.log(createForm);
   }
  }
 
-// @Component({
-//     templateUrl: 'users-update.component.html',
-//     styleUrls: ['users-dialogue.component.scss']
-//   })
-//   export class UserUpdateComponent implements OnInit{
-
-//     public event: EventEmitter<any> = new EventEmitter();
-
-//     updateForm: FormGroup;
-
-//     constructor(
-//       public dialogRef: MatDialogRef<UsersComponent>,
-//       @Inject(MAT_DIALOG_DATA) public data: any,
-//       private addUser: AddUserService,
-//       private fb: FormBuilder,
-//       private  router: Router
-//     ) {
-//       this.createForm();
-//       console.log(this.data);
-//     }
-
-
-
-//     createForm() {
-//       this.updateForm = this.fb.group({
-//         username: [''],
-//       firstname: ['', Validators.required],
-//       lastname: ['', Validators.required],
-//       email: ['', Validators.required],
-//       phonenumber: ['',Validators.required],
-//       password: ['', Validators.required]
-//       })
-//     }
-
-//     onNoClick(): void {
-//       this.dialogRef.close();
-//     }
-
-
-//   updateUser(firstname, lastname, username, phone, email, password){
-//     this.addUser.updateUser(firstname, lastname, username, phone, email, password).subscribe((res) => {
-//       this.dialogRef.close();
-//       console.log(res);
-//     });
-//   }
-
-//     ngOnInit() {
-//       this.updateForm.get('firstname').setValue(this.data.First_name);
-//       this.updateForm.get('lastname').setValue(this.data.Last_name);
-//       this.updateForm.get('username').setValue(this.data.User_name);
-//       this.updateForm.get('phonenumber').setValue(this.data.Phone_number);
-//       this.updateForm.get('email').setValue(this.data.Email_id);
-//       this.updateForm.get('password').setValue(this.data.User_pwd);
-//     }
-
-//   }
-
-
-  @Component({
-    templateUrl: 'dialog.component.html',
-    styleUrls: ['dialog.component.scss']
+@Component({
+    templateUrl: 'users-update.component.html',
+    styleUrls: ['users-dialogue.component.scss']
   })
+  export class UserUpdateComponent implements OnInit{
+
+    public event: EventEmitter<any> = new EventEmitter();
+
+    updateForm: FormGroup;
+
+    constructor(
+      public dialogRef: MatDialogRef<UsersComponent>,
+      @Inject(MAT_DIALOG_DATA) public data: any,
+      private addUser: AddUserService,
+      private fb: FormBuilder,
+      private  router: Router
+    ) {
+      this.createForm();
+      console.log(this.data);
+    }
+
+
+
+    createForm() {
+      this.updateForm = this.fb.group({
+        UserName: [''],
+         UserPwd: [''],
+      FirstName: ['', Validators.required],
+      LastName: ['', Validators.required],
+      UserEmail: ['', Validators.required],
+      UserPhone: ['',Validators.required],
+      roles:['',Validators.required]
+      })
+    }
+
+    onNoClick(): void {
+      this.dialogRef.close();
+    }
+
+
+  updateUser(createForm){
+    console.log(createForm);
+    this.addUser.updateUser(createForm).subscribe((res) => {
+      this.dialogRef.close();
+      console.log(res);
+    });
+  }
+
+    ngOnInit() {
+      this.updateForm.get('FirstName').setValue(this.data.FirstName);
+      this.updateForm.get('LastName').setValue(this.data.LastName);
+      this.updateForm.get('UserName').setValue(this.data.UserName);
+      this.updateForm.get('UserPhone').setValue(this.data.UserPhone);
+      this.updateForm.get('UserEmail').setValue(this.data.UserEmail);
+      this.updateForm.get('UserPwd').setValue(this.data.UserPwd);
+      this.updateForm.get('roles').setValue(this.data.roles);
+
+    }
+
+  }
+
+
+  // @Component({
+  //   templateUrl: 'dialog.component.html',
+  //   styleUrls: ['dialog.component.scss']
+  // })
   export class MatConfirmDialogComponent implements OnInit{
 
     message: any;
@@ -281,12 +288,12 @@ console.log(createForm);
       }
 
       ngOnInit(){
-        if(this.data.User_Role_Id === '1'){
-          this.message = "This is admin. You can't delete this user.";
-        }
-        else {
-          this.message = "Do you wan't delete " + this.data.User_name + "?";
-        }
+        // if(this.data.User_Role_Id === '1'){
+        //   this.message = "This is admin. You can't delete this user.";
+        // }
+        // else {
+        //   this.message = "Do you wan't delete " + this.data.User_name + "?";
+        // }
       }
 
       deleteUser(){
