@@ -177,63 +177,17 @@ _data1=["role","role2","role3","role4"];
     );
     
   }
+selected:any;
+private fieldArray: Array<any> = [{option:"",condition:"condition",value:"value"}];
 
-  selectedNav: any;
-  show1 = false;
-  show2 = false;
-  show3 = false;
-  show4 = false;
-  show5 = false;
-  show6 = false;
-  show7 = false;
-  show8 = false;
-  regTypeSelectedOption: any;
-  yesnoCheck(nav:any){
-        this.selectedNav = nav;
-        console.log(nav);
-            if(this.selectedNav.value === "text"){
-              console.log("hello");
-              this.show1 = true;
-              this.show8 = true;
-            }
-            else{
-              this.show2 = false;
-              this.show3 = false;
-              this.show4 = false;
-              this.show5 = false;
-              this.show6 = false;
-              this.show7 = false;
-            }
-             if(this.selectedNav.value === "dropdown"){
-              console.log("hello");
-              this.show3 = true;
-              this.show4 = true;
-              this.show5 = true;
-            }
-            else{
-              this.show1 = false;
-              this.show2 = false;
-              this.show8 = false;
-              this.show6 = false;
-              this.show7 = false;
-            }
-            if(this.selectedNav.value === "radio"){
-              console.log("hello");
-              this.show2 = true;
-            }
-            if(this.selectedNav.value === "multiselector"){
-              console.log("hello");
-              this.show6 = true;
-            }
-            if(this.selectedNav.value === "checkbox"){
-              console.log("hello");
-              this.show7 = true;
-            }
-            if(this.selectedNav.value === "description"){
-              console.log("hello");
-              this.show8 = true;
-            }
-        }
-
+ Options = [
+    {value:"text",valueFieldType:'text',viewValue:"Field 1"},
+    {value:"dropdown",valueFieldType:'dropdown',viewValue:"Field 2"},
+    {value:"radio",valueFieldType:'radio',viewValue:"Field 3"},
+    {value:"multiselector",valueFieldType:'multiselector',viewValue:"Field 4"},
+    {value:"checkbox",valueFieldType:'checkbox',viewValue:"Field 5"},
+    {value:"description",valueFieldType:'description',viewValue:"Field 5"}
+  ]
+  
   
  }

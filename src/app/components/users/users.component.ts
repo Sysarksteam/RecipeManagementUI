@@ -4,6 +4,7 @@ import { AddUserService } from '../../services/addUser.service';
 import { AddUser } from '../../models/addUser';
 import { Observable } from 'rxjs/Observable';
 import {DataSource} from '@angular/cdk/table';
+import {ErrorStateMatcher} from '@angular/material/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -105,12 +106,19 @@ arrdbjson: string [];
 alertCtrl : any;
 alert:any;
   deleteUser(data) {
- // console.log(data)
-   alert("Do you wan't delete ");
- 
+// console.log(data)
+  //  alert("Do you wan't delete ");
+ let dialogRef = this.dialog.open(MatConfirmDialogComponent, {
+    width: '400px',
+    height: '150px',
+    data: data
+  });
+dialogRef.afterClosed().subscribe(() => {
+    this.fetchUser();
+  });
 
       let UserId = {
-        "UserId": data
+        "UserId": data.UserId
       }
 
     this.addUser.deleteUser(UserId).subscribe(res => {
@@ -120,20 +128,11 @@ alert:any;
       this.fetchUser();
     });
   }
-  // }
-  // let dialogRef = this.dialog.open(MatConfirmDialogComponent, {
-  //   width: '400px',
-  //   height: '150px',
-  //   data: data
-  // });
+  }
+  
 
-  // dialogRef.afterClosed().subscribe(() => {
-  //   this.fetchUser();
-  // });
+  
 
-
-
-}
 
 @Component({
   templateUrl: 'users-dialogue.component.html',
@@ -145,23 +144,24 @@ alert:any;
   private formSubmitAttempt: boolean;
  roles = new FormControl();
   public event: EventEmitter<any> = new EventEmitter();
-  toppingList  = ['Clerk','Manager','Admin','GM'];
+  //toppingList  = ['Clerk','Manager','Admin','GM'];
  data34: any[]=[];
  data35: any[]=[];
   _data1: any;
+  _data2: any;
+  //data36: any[]=[];
  getUserRoles(){
 
    // let record = this.addUser.getUserRole();
     this.addUser.getUserRole().subscribe(res => {
-      // let roles = res[0].RoleName;
-      // console.log(res)
+       console.log(res)
        this._data1 = res;
-    // console.log(_data1)
+     console.log(this._data1)
      let i=0;
      this._data1.forEach(element => {
        this.data34[i++] = element.RoleName;
      });
-
+     // console.log(this.data35);
       console.log(this.data34);
     });
    
@@ -273,10 +273,10 @@ console.log(createForm);
   }
 
 
-  // @Component({
-  //   templateUrl: 'dialog.component.html',
-  //   styleUrls: ['dialog.component.scss']
-  // })
+  @Component({
+    templateUrl: 'dialog.component.html',
+    styleUrls: ['dialog.component.scss']
+  })
   export class MatConfirmDialogComponent implements OnInit{
 
     message: any;
@@ -288,12 +288,7 @@ console.log(createForm);
       }
 
       ngOnInit(){
-        // if(this.data.User_Role_Id === '1'){
-        //   this.message = "This is admin. You can't delete this user.";
-        // }
-        // else {
-        //   this.message = "Do you wan't delete " + this.data.User_name + "?";
-        // }
+           this.message = "Do you wan't delete " + this.data.UserName + "?";
       }
 
       deleteUser(){

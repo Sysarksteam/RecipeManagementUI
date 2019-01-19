@@ -35,7 +35,7 @@ export class AddUserService {
       UserPwd: createForm.UserPwd,
       roles: createForm.roles
     };
-      return this.http.post(this.uri1 + 'updateuser', update_user);
+      return this.http.post(this.uri1 + 'api/User/UpdateUser/', update_user);
   }
 
   getUser(): Observable<any> {
