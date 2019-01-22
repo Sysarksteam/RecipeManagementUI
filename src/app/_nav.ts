@@ -20,7 +20,12 @@ export const navItems = [
     name: 'Entity Management',
     url: '/entity-type',
     icon: 'icon-pencil',
-  }
+  },
+  // {
+  //   name: 'Entity Role',
+  //   url: '/entity-role',
+  //   icon: 'icon-pencil',
+  // }
   
 
   // {

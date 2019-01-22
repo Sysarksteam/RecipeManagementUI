@@ -38,6 +38,10 @@ export const routes: Routes = [
        {
         path: 'entity-type',
         loadChildren: './components/entity-type/entity-type.module#EntityTypeModule'
+      },
+      {
+        path: 'entity-role',
+        loadChildren: './components/entity-role/entity-role.module#EntityRoleModule'
       }
     ]
   }

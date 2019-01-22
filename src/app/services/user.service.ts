@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
 
 // domain = 'https://wildseve-node.appspot.com/';
-domain = 'http://192.168.0.128:81/';
+domain = 'http://192.168.0.120/';
 authToken;
 user;
 options;
@@ -15,14 +15,14 @@ options;
   constructor(private http: HttpClient) { }
 
 login(userName) {
-  //console.log(userName);
+ // console.log(userName);
   //console.log( this.http.get(this.domain + 'api/UserRole/ValidateUser?userName=', userName));
-  return this.http.get(this.domain + 'api/UserTbls/ValidateUser?userName='+ userName)
+  return this.http.get(this.domain + '/api/UserRole/ValidateUser?userName='+ userName)
   
 }
 
 loginpass(passWord,userId){  
-  return this.http.get(this.domain + '/api/UserTbls/ValidatePassword?passWord=' + passWord + '&userId=' + userId);
+  return this.http.get(this.domain + 'api/UserRole/ValidatePassword?UserId=' + userId + '&password=' + passWord);
 }
 
 // Function to logout

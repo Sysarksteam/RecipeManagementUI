@@ -106,16 +106,17 @@ arrdbjson: string [];
 alertCtrl : any;
 alert:any;
   deleteUser(data) {
+    //  let dialogRef = this.dialog.open(MatConfirmDialogComponent, {
+//     width: '400px',
+//     height: '150px',
+//     data: data
+//   });
+//dialogRef.afterClosed().subscribe(() => {
+ //   this.fetchUser();
+ // });
+
 // console.log(data)
-  //  alert("Do you wan't delete ");
- let dialogRef = this.dialog.open(MatConfirmDialogComponent, {
-    width: '400px',
-    height: '150px',
-    data: data
-  });
-dialogRef.afterClosed().subscribe(() => {
-    this.fetchUser();
-  });
+    alert("Do you wan't delete " + data.UserName);
 
       let UserId = {
         "UserId": data.UserId
@@ -132,8 +133,6 @@ dialogRef.afterClosed().subscribe(() => {
   
 
   
-
-
 @Component({
   templateUrl: 'users-dialogue.component.html',
   styleUrls: ['users-dialogue.component.scss']
@@ -142,7 +141,7 @@ dialogRef.afterClosed().subscribe(() => {
 
   createForm: FormGroup;
   private formSubmitAttempt: boolean;
- roles = new FormControl();
+ RoleId = new FormControl();
   public event: EventEmitter<any> = new EventEmitter();
   //toppingList  = ['Clerk','Manager','Admin','GM'];
  data34: any[]=[];
@@ -180,7 +179,7 @@ dialogRef.afterClosed().subscribe(() => {
     UserEmail: ['', Validators.required],
     UserPhone: ['',Validators.required],
     UserPwd: ['', Validators.required],
-    roles: ['', Validators.required]
+    RoleId: ['', Validators.required]
    // roleid: ['', Validators.required]
     })
   }
@@ -216,7 +215,35 @@ console.log(createForm);
     styleUrls: ['users-dialogue.component.scss']
   })
   export class UserUpdateComponent implements OnInit{
+    _data2:any;
+    dataupdaterole:any[]=[];
 
+    _data
+    data4: any;
+ getUserRoles1(UserId){
+
+   // let record = this.addUser.getUserRole();
+    this.addUser.getUserRole().subscribe(res => {
+       console.log(res)
+       this._data2 = res;
+     console.log(this._data2)
+     let i=0;
+     this._data2.forEach(element => {
+       this.dataupdaterole[i++] = element.RoleName;
+     });
+     // console.log(this.data35);
+      console.log(this.dataupdaterole);
+    });
+   
+    this.addUser.getUserRoleSelected(UserId).subscribe(res =>{
+
+       this.data4 = res.RoleId;
+      console.log(this.data4);
+
+      console.log(res);
+
+    });
+ }
     public event: EventEmitter<any> = new EventEmitter();
 
     updateForm: FormGroup;
@@ -242,7 +269,7 @@ console.log(createForm);
       LastName: ['', Validators.required],
       UserEmail: ['', Validators.required],
       UserPhone: ['',Validators.required],
-      roles:['',Validators.required]
+      RoleId:['',Validators.required]
       })
     }
 
@@ -253,7 +280,7 @@ console.log(createForm);
 
   updateUser(createForm){
     console.log(createForm);
-    this.addUser.updateUser(createForm).subscribe((res) => {
+    this.addUser.updateUser(createForm, this.data.UserId).subscribe((res) => {
       this.dialogRef.close();
       console.log(res);
     });
@@ -266,7 +293,8 @@ console.log(createForm);
       this.updateForm.get('UserPhone').setValue(this.data.UserPhone);
       this.updateForm.get('UserEmail').setValue(this.data.UserEmail);
       this.updateForm.get('UserPwd').setValue(this.data.UserPwd);
-      this.updateForm.get('roles').setValue(this.data.roles);
+     // this.updateForm.get('RoleId').setValue(this.data.RoleId);
+      this.getUserRoles1(this.data.UserId);
 
     }
 

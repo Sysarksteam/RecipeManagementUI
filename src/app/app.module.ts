@@ -53,10 +53,12 @@ import { UserService } from './services/user.service';
 
 import { UsersModule } from './components/users/users.module';
 import{UsersRoleModule} from './components/users-role/users-role.module';
+import{EntityRoleModule} from './components/entity-role/entity-role.module';
 import { AddUserService } from './services/addUser.service';
 
 import { MaterialModule } from './material.module';
 import { EntityTypeModule } from './components/entity-type/entity-type.module';
+
 
 
 @NgModule({
@@ -83,7 +85,8 @@ import { EntityTypeModule } from './components/entity-type/entity-type.module';
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
-    LoginComponent
+    LoginComponent,
+    
     
 ],
   providers: [{

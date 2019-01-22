@@ -40,7 +40,7 @@ export class DefaultLayoutComponent implements OnInit {
     //   this.navItems  = this.navItems.slice(0, navItems.length-2);
     // }
 
-
+console.log(navItems);
   }
 
 

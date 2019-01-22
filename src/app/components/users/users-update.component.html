@@ -27,8 +27,8 @@
             <!-- <mat-error *ngIf="updateForm.controls['password'].errors.required">Please enter a valid Email.</mat-error> -->
             </mat-form-field>
             <mat-form-field>
-          <mat-select placeholder="Role" #roles formControlName="roles" multiple>
-            <mat-option *ngFor="let topping of _data1" [value]="topping">{{topping.RoleName}}</mat-option>
+          <mat-select [(value)]="data4" placeholder="Role" #RoleId formControlName="RoleId" multiple>
+            <mat-option *ngFor="let topping of _data2" [value]="topping.RoleId">{{topping.RoleName}}</mat-option>
           </mat-select>
         </mat-form-field>
 

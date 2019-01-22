@@ -61,15 +61,16 @@ export class LoginComponent implements OnInit {
     this.authService.login(username).subscribe((data: any) => {
       // Check if response was a success or error
       if(data === -1){
+        console.log(data);
         this.messageClass = 'alert alert-danger'; // Set bootstrap error class
         this.message = 'Username incorrect';
         this.processing = false; // Enable submit button
         this.enableForm(); // Enable form for editting
       }
       else{
-        // console.log(data);
+         console.log(data);
       this.authService.loginpass(passWord,data).subscribe(res => {
-       // console.log(res);
+        console.log(res);
         if(res == -1){
         this.messageClass = 'alert alert-danger'; // Set bootstrap error class
         this.message = 'Password incorrect';

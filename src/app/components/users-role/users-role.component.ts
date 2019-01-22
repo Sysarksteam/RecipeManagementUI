@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./users-role.component.scss']
 })
 export class UsersRoleComponent implements OnInit {
-  access =['read','write'];
-permission =['dashboard','usermanagement'];
+  access =['READ','WRITE'];
+permission =['Dashboard','Usermanagement'];
 userRole = new usersrole('rolename','access','permission');
 public data: any;
   constructor(

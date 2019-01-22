@@ -8,8 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AddUserService {
 
   //private uri = './assets/dbjson.json';
-  private uri = 'http://192.168.0.128:81/';
-  private uri1 = 'http://192.168.0.128/'
+  private uri = 'http://192.168.0.120/';
+  private uri1 = 'http://192.168.0.120/'
 
 
   constructor(private http: HttpClient) {
@@ -18,13 +18,13 @@ export class AddUserService {
 
   createUser(createForm)
   {
-    
-      return this.http.post(this.uri + 'api/UserTbls/PostUserRoleTbl', createForm);
+    console.log(createForm);
+      return this.http.post(this.uri1 + 'api/User/AddUserRoleTbl', createForm);
 
   }
 
 
-  updateUser(createForm)
+  updateUser(createForm, UserId)
   {
     const update_user  = {
       FirstName: createForm.FirstName,
@@ -33,19 +33,22 @@ export class AddUserService {
       UserPhone: createForm.UserPhone,
       UserEmail: createForm.UserEmail,
       UserPwd: createForm.UserPwd,
-      roles: createForm.roles
+      RoleId: createForm.RoleId
     };
-      return this.http.post(this.uri1 + 'api/User/UpdateUser/', update_user);
+      return this.http.put(this.uri1 + 'api/User/UpdateUser/' + UserId, update_user);
   }
 
   getUser(): Observable<any> {
-    return this.http.get(this.uri + 'api/UserTbls/GetUserTbls');
+    return this.http.get(this.uri + '/api/User/GetUserTbls');
   }
 
   getUserRole():Observable<any> {
     return this.http.get(this.uri1 + 'api/User/GetRoleTbls');
   }
   
+  getUserRoleSelected(UserId):Observable<any>{
+    return this.http.get(this.uri1 + 'api/UserRole/GetUser/'+UserId);
+  }
 
   deleteUser(UserId): Observable<any> {
     console.log(UserId);
