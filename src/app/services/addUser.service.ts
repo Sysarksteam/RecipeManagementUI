@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AddUserService {
 
   //private uri = './assets/dbjson.json';
-  private uri = 'http://192.168.0.120/';
+  private baseUrl = 'http://localhost:3000/';
   private uri1 = 'http://192.168.0.120/'
 
 
@@ -39,13 +39,25 @@ export class AddUserService {
   }
 
   getUser(): Observable<any> {
-    return this.http.get(this.uri + '/api/User/GetUserTbls');
+    return this.http.get(this.uri1 + '/api/User/GetUserTbls');
   }
 
   getUserRole():Observable<any> {
     return this.http.get(this.uri1 + 'api/User/GetRoleTbls');
   }
   
+  getpermission():Observable<any> {
+    return this.http.get(this.uri1 + 'api/UserRole/GetPermission');
+  }
+
+  getaccess():Observable<any> { 
+    return this.http.get(this.uri1 + 'api/UserRole/GetAccessTbl');
+  }
+
+  userRole(createForm) {
+    return this.http.post(this.baseUrl+ 'author', createForm);
+  }
+
   getUserRoleSelected(UserId):Observable<any>{
     return this.http.get(this.uri1 + 'api/UserRole/GetUser/'+UserId);
   }

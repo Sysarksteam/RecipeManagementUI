@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 
 import { UsersRoleComponent } from './users-role.component';
 import { UsersRoleRoutingModule } from './users-role.routing.module';
+import { MaterialModule } from './../../material.module';
 
-
-import { FormsModule } from '@angular/forms';
+import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     UsersRoleRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+  MaterialModule,
     CommonModule,
     HttpClientModule
   ],

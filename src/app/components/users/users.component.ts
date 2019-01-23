@@ -37,7 +37,6 @@ export class UsersComponent implements OnInit {
   constructor(private addUser: AddUserService, public dialog: MatDialog,private httpService: HttpClient,
     private router: Router,private modalService: BsModalService, private _http: HttpClient) {
   }
-arrdbjson: string [];
   // enrolluser(user: user){
   //   this._http.post<any>(this._url,user);
   // }

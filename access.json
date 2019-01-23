@@ -1,0 +1,21 @@
+{
+  "author": [
+    {
+      "id": 1,
+      "age": 19,
+      "name": "asha"
+    },
+    {
+      "Access": {
+        "AccessId": 2,
+        "AccessName": "Write"
+      },
+      "Permission": {
+        "PermissionId": 4,
+        "PermissionName": "Configuration"
+      },
+      "RoleName": "admin",
+      "id": 2
+    }
+  ]
+}
