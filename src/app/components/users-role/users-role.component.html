@@ -30,7 +30,7 @@
 </div>
   <table *ngIf="arrdbadduser" class="table table-bordered">
   <thead>
-    <tr align="center">
+    <tr text-align="center">
       <td>RoleName</td>
       <td>Access</td>
       <td>Permission</td>
@@ -39,13 +39,13 @@
   </thead>
   <tbody>
     <tr *ngFor="let dbdata of arrdbadduser">
-      <td align="center">{{dbdata.RoleName}}</td>
-      <td align="center">{{dbdata.Access.AccessName}}</td>
-      <td align="center">{{dbdata.Permission.PermissionName}}</td>
+      <td text-align="center">{{dbdata.RoleName}}</td>
+      <td text-align="center">{{dbdata.Access.AccessName}}</td>
+      <td text-align="center">{{dbdata.Permission.PermissionName}}</td>
       <td>
         <div class="row" >
           <div class="col-sm-12 text-center">
-        <button class="btn btn-danger btn-md" id="btnClear">Delete</button>
+        <button class="btn btn-danger btn-md" id="btnClear" (click)="deleteUserRole(dbdata)">Delete</button>
       </div>
       </div>
       </td>
@@ -55,7 +55,7 @@
 <div id="outer">
         <div class="inner"><button type="submit" class="btn btn-info msgBtn">Save</button></div>
         <div class="inner"><button type="submit" class="btn btn-danger msgBtn2">Cancel</button></div>
-    </div> 
+    </div>
     <br/>
     <br/>
 </div>

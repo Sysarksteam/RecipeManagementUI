@@ -31,7 +31,8 @@ createForm: FormGroup;
 //arrdbadduser: string [];
 
 //Permission DropDown API
-
+selected:any;
+selected1:any;
 dataper: any[]=[];
 dataperdis: any;
 getpermissiondrop(){
@@ -81,13 +82,29 @@ createUser(createForm){
       .subscribe( data => {
         console.log(data);
        // this.router.navigate(['list-user']);
+       this.getUserRoleList();
       });
+}
+
+getUserRoleList(){
+this.addUser.getUserRoles().subscribe(res =>{
+  console.log(res);
+  this.arrdbadduser = res;
+});
+}
+
+deleteUserRole(createForm){
+  this.addUser.delUserRole(createForm.id).subscribe(res => {
+    console.log(res);
+    this.getUserRoleList();
+  });
 }
 
 addForm: FormGroup;
   ngOnInit() {
     this.getpermissiondrop();
     this.getaccessdrop();
+    this.getUserRoleList();
     console.log(this.arrdbadduser);
     this.addForm = this.fb.group({
       id: [],
@@ -96,7 +113,7 @@ addForm: FormGroup;
       permissionName: ['', Validators.required]
     });
   }
-  
+
 
 }
 export class usersrole{

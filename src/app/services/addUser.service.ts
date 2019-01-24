@@ -45,18 +45,15 @@ export class AddUserService {
   getUserRole():Observable<any> {
     return this.http.get(this.uri1 + 'api/User/GetRoleTbls');
   }
-  
+
   getpermission():Observable<any> {
     return this.http.get(this.uri1 + 'api/UserRole/GetPermission');
   }
 
-  getaccess():Observable<any> { 
+  getaccess():Observable<any> {
     return this.http.get(this.uri1 + 'api/UserRole/GetAccessTbl');
   }
 
-  userRole(createForm) {
-    return this.http.post(this.baseUrl+ 'author', createForm);
-  }
 
   getUserRoleSelected(UserId):Observable<any>{
     return this.http.get(this.uri1 + 'api/UserRole/GetUser/'+UserId);
@@ -65,7 +62,21 @@ export class AddUserService {
   deleteUser(UserId): Observable<any> {
     console.log(UserId);
     return this.http.post(this.uri1 +'api/User/DeleteUser',UserId);
-    
+
+  }
+
+  // JSON Server Related APIs
+  userRole(createForm): Observable<any> {
+    return this.http.post(this.baseUrl+ 'userRoles', createForm);
+  }
+
+  getUserRoles(): Observable<any> {
+    return this.http.get(this.baseUrl+ 'userRoles',);
+  }
+
+  delUserRole(role): Observable<any> {
+  //  console.log(role);
+   return this.http.delete(this.baseUrl+ 'userRoles/'+ role);
   }
 
 }

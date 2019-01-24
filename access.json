@@ -1,21 +1,28 @@
 {
-  "author": [
+  "userRoles": [
     {
-      "id": 1,
-      "age": 19,
-      "name": "asha"
+      "Access": {
+        "AccessId": 1,
+        "AccessName": "Read"
+      },
+      "Permission": {
+        "PermissionId": 6,
+        "PermissionName": "Reports"
+      },
+      "RoleName": "Clerk",
+      "id": 4
     },
     {
       "Access": {
-        "AccessId": 2,
-        "AccessName": "Write"
+        "AccessId": 3,
+        "AccessName": "Create"
       },
       "Permission": {
         "PermissionId": 4,
         "PermissionName": "Configuration"
       },
-      "RoleName": "admin",
-      "id": 2
+      "RoleName": "Admin",
+      "id": 5
     }
   ]
 }
