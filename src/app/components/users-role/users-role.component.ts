@@ -1,17 +1,9 @@
-import {Component, Inject, EventEmitter, OnInit, OnDestroy,TemplateRef } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatIconRegistry, MatTableDataSource} from '@angular/material';
+import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
-import { AddUser } from '../../models/addUser';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { AddUserService } from '../../services/addUser.service';
 import { FormGroup, FormBuilder, Validators , FormControl } from '@angular/forms';
 import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { FormsModule } from '@angular/forms';
-
 
 @Component({
   selector: 'app-users-role',
@@ -20,33 +12,39 @@ import { FormsModule } from '@angular/forms';
 })
 export class UsersRoleComponent implements OnInit {
 //   access =['READ','WRITE'];
-modalRef: BsModalRef;
 // permission =['Dashboard','Usermanagement'];
-//userRole = new usersrole('rolename','access','permission');
+userRole = new usersrole('rolename','access','permission');
 public data: any;
-
-  constructor(private addUser:AddUserService,
+createForm: FormGroup;
+  constructor(
    // private $modal: $ModalManagerService,
-        private http: HttpClient,public dialog: MatDialog,  private fb: FormBuilder, private httpService: HttpClient, 
+        private http: HttpClient,  private fb: FormBuilder, private httpService: HttpClient, private addUser:AddUserService,
   ){
     //super();
+    this.createForm = this.fb.group({
+    Access: ['', Validators.required],
+ Permission:['', Validators.required],
+ RoleName:['', Validators.required]
+   // roleid: ['', Validators.required]
+    })
   }
-  // openModal(template: TemplateRef<any>) {
-  //   this.modalRef = this.modalService.show(template);
-  // }
+//arrdbadduser: string [];
 
-openCreateRole(): void {
-    const dialogRef = this.dialog.open(UserRoleCreateComponent, {
-      width: '400px',
-    });
+//Permission DropDown API
+selected:any;
+selected1:any;
+dataper: any[]=[];
+dataperdis: any;
+getpermissiondrop(){
+  this.addUser.getpermission().subscribe(res => {
+// console.log(res)
+       this.dataper = res;
 
-    dialogRef.afterClosed().subscribe(() => {
-     // this.fetchUser();
-    });
+console.log(this.dataper);
+console.log(Object.values(this.dataper)[0]);
+  });
 
-
-   }
-
+}
 //RoleName Dropdown API
 
  data34: any[]=[];
@@ -70,151 +68,87 @@ openCreateRole(): void {
     });
    
  }
-
- //Permission DropDown API
-selected:any;
-selected1:any;
-dataper: any[]=[];
-dataperdis: any;
-getpermissiondrop(){
-  this.addUser.getpermission().subscribe(res => {
- console.log(res)
-       this.dataperdis = res;
-     console.log(this.dataperdis)
-     let i=0;
-     this.dataperdis.forEach(element => {
-       this.dataper[i++] = element;
-     });
-     // console.log(this.data35);
-      console.log(this.dataper);
-
-  });
-
-}
-
 //Access DropDown API
 
 dataAce: any[]=[];
 dataacedis: any;
 getaccessdrop(){
   this.addUser.getaccess().subscribe(res => {
- console.log(res)
-       this.dataacedis = res;
-     console.log(this.dataacedis)
-     let i=0;
-     this.dataacedis.forEach(element => {
-       this.dataAce[i++] = element;
-     });
+ //console.log(res)
+       this.dataAce = res;
+
      // console.log(this.data35);
       console.log(this.dataAce);
+      console.log(Object.values(this.dataAce)[0]);
 
   });
 
 }
+arrdbadduser:any;
+// createUser(createForm) {
+//     let headers = new Headers({ 'Content-Type': 'application/json' });
+//     let options = new RequestOptions({ headers: headers });
+//     let body = JSON.stringify(createForm);
+//     return this.http.post('access', body, options );
+//   }
+// createRole(createForm){
+//   let UserId = JSON.parse(localStorage.getItem("user"));
+//   console.log(createForm);
+//  let  rolePermisson: any = {
+//    UserId: UserId,
+//    AccessId: createForm.Access.AccessId,
+//    PermissionId: createForm.Permission.PermissionId
+//  }
+//  console.log(rolePermisson);
+//  this.addUser.roleAccPerm(rolePermisson)
+//       .subscribe( data => {
+//    //     console.log(data);
+//         this.arrdbadduser = data;
+//         console.log(this.arrdbadduser)
+
+
+//        // this.router.navigate(['list-user']);
+// //       this.getUserRoleList();
+//       });
+// }
+
+// getUserRoleList(){
+// this.addUser.getUserRoles().subscribe(res =>{
+//   console.log(res);
+//   this.arrdbadduser = res;
+// });
+// }
+
+// deleteUserRole(createForm){
+//   this.addUser.delUserRole(createForm.id).subscribe(res => {
+//     console.log(res);
+//     this.getUserRoleList();
+//   });
+// }
 
 addForm: FormGroup;
   ngOnInit() {
-    this.getUserRoles();
     this.getpermissiondrop();
+    this.getUserRoles();
     this.getaccessdrop();
-   // this.getUserRoleList();
-    // console.log(this.arrdbadduser);
-    // this.addForm = this.fb.group({
-    //   id: [],
-    //   RoleName: ['', Validators.required],
-    //   AccessName: ['', Validators.required],
-    //   permissionName: ['', Validators.required]
-    // });
+//    this.getUserRoleList();
+ //   console.log(this.arrdbadduser);
+    this.addForm = this.fb.group({
+      id: [],
+      RoleName: ['', Validators.required],
+      AccessName: ['', Validators.required],
+      permissionName: ['', Validators.required]
+    });
   }
 
 
 }
-
-@Component({
-  templateUrl: 'users-role-dialogue.component.html',
-  styleUrls: ['users-role-dialogue.component.scss']
-})
- export class UserRoleCreateComponent {
-
- // createForm: FormGroup;
-  private formSubmitAttempt: boolean;
- RoleId = new FormControl();
- createRoleForm: FormGroup;
-  public event: EventEmitter<any> = new EventEmitter();
-  //toppingList  = ['Clerk','Manager','Admin','GM'];
-
-  
+export class usersrole{
   constructor(
-    public dialogRef: MatDialogRef<UsersRoleComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private addUserRole: AddUserService,
-    private fb: FormBuilder,
-    private router: Router
-  ) {
-    this.createRoleForm = this.fb.group({
-    RoleName: ['', Validators.required],
-    Access: ['', Validators.required],
-    Permission: ['', Validators.required]
-   // roleid: ['', Validators.required]
-    })
-  }
-
-  // isFieldInvalid(field: string) {
-  //   return (
-  //     (!this.createForm.get(field).valid && this.createForm.get(field).touched) ||
-  //     (this.createForm.get(field).untouched && this.formSubmitAttempt)
-  //   );
-  // }
-
-
-
-  
-
-
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  createUser(createRoleForm){
-
-console.log(createRoleForm);
-    // this.addUserRole.createUserRole(createRoleForm).subscribe((res) => {
-    //   console.log(res);
-    //   this.dialogRef.close();
-    //   this.router.navigate['/users']
-    //   });
-  }
-  
-  ngOnInit(){
-  
-  }
- }
-
-
-
-  @Component({
-    templateUrl: 'dialogRole.component.html',
-    styleUrls: ['dialogRole.component.scss']
-  })
-  export class MatConfirmDialogComponent implements OnInit{
-
-    message: any;
-
-    constructor(
-      public dialogRef: MatDialogRef<UsersRoleComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: any,private addUserRole: AddUserService){
-       console.log(this.data);
-      }
-
-      ngOnInit(){
-          // this.message = "Do you wan't delete " + this.data.UserName + "?";
-      }
-
-
-      onNoClick(): void {
-        this.dialogRef.close();
-      }
+    public rolename: string,
+    public access: string,
+    public permission: string
+  ){
 
   }
-
+}

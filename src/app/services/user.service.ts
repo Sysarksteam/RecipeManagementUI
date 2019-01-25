@@ -18,6 +18,12 @@ login(userName) {
  // console.log(userName);
   //console.log( this.http.get(this.domain + 'api/UserRole/ValidateUser?userName=', userName));
   return this.http.get(this.domain + '/api/UserRole/ValidateUser?userName='+ userName)
+  .pipe(map(res => {
+    console.log(res);
+    localStorage.setItem('user', JSON.stringify(res));
+    localStorage;
+    return res;
+  }));
   
 }
 

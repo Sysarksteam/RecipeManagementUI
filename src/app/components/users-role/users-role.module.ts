@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { UsersRoleComponent } from './users-role.component';
-import { UserRoleCreateComponent, MatConfirmDialogComponent } from './users-role.component'
+//import { UserRoleCreateComponent, MatConfirmDialogComponent } from './users-role.component'
 import { UsersRoleRoutingModule } from './users-role.routing.module';
 import { MaterialModule } from './../../material.module';
 
@@ -20,8 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HttpClientModule
   ],
-  declarations: [ UsersRoleComponent, UserRoleCreateComponent, MatConfirmDialogComponent],
-  entryComponents: [UserRoleCreateComponent,MatConfirmDialogComponent]
+  declarations: [ UsersRoleComponent]
 })
 export class UsersRoleModule { }
 
