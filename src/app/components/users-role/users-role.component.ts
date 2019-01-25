@@ -37,16 +37,11 @@ dataper: any[]=[];
 dataperdis: any;
 getpermissiondrop(){
   this.addUser.getpermission().subscribe(res => {
- console.log(res)
-       this.dataperdis = res;
-     console.log(this.dataperdis)
-     let i=0;
-     this.dataperdis.forEach(element => {
-       this.dataper[i++] = element;
-     });
-     // console.log(this.data35);
-      console.log(this.dataper);
+// console.log(res)
+       this.dataper = res;
 
+console.log(this.dataper);
+console.log(Object.values(this.dataper)[0]);
   });
 
 }
@@ -57,55 +52,64 @@ dataAce: any[]=[];
 dataacedis: any;
 getaccessdrop(){
   this.addUser.getaccess().subscribe(res => {
- console.log(res)
-       this.dataacedis = res;
-     console.log(this.dataacedis)
-     let i=0;
-     this.dataacedis.forEach(element => {
-       this.dataAce[i++] = element;
-     });
+ //console.log(res)
+       this.dataAce = res;
+
      // console.log(this.data35);
       console.log(this.dataAce);
+      console.log(Object.values(this.dataAce)[0]);
 
   });
 
 }
-arrdbadduser:any[]=[];
+arrdbadduser:any;
 // createUser(createForm) {
 //     let headers = new Headers({ 'Content-Type': 'application/json' });
 //     let options = new RequestOptions({ headers: headers });
 //     let body = JSON.stringify(createForm);
 //     return this.http.post('access', body, options );
 //   }
-createUser(createForm){
- this.addUser.userRole(createForm)
+createRole(createForm){
+  let UserId = JSON.parse(localStorage.getItem("user"));
+  console.log(createForm);
+ let  rolePermisson: any = {
+   UserId: UserId,
+   AccessId: createForm.Access.AccessId,
+   PermissionId: createForm.Permission.PermissionId
+ }
+ console.log(rolePermisson);
+ this.addUser.roleAccPerm(rolePermisson)
       .subscribe( data => {
-        console.log(data);
+   //     console.log(data);
+        this.arrdbadduser = data;
+        console.log(this.arrdbadduser)
+
+
        // this.router.navigate(['list-user']);
-       this.getUserRoleList();
+//       this.getUserRoleList();
       });
 }
 
-getUserRoleList(){
-this.addUser.getUserRoles().subscribe(res =>{
-  console.log(res);
-  this.arrdbadduser = res;
-});
-}
+// getUserRoleList(){
+// this.addUser.getUserRoles().subscribe(res =>{
+//   console.log(res);
+//   this.arrdbadduser = res;
+// });
+// }
 
-deleteUserRole(createForm){
-  this.addUser.delUserRole(createForm.id).subscribe(res => {
-    console.log(res);
-    this.getUserRoleList();
-  });
-}
+// deleteUserRole(createForm){
+//   this.addUser.delUserRole(createForm.id).subscribe(res => {
+//     console.log(res);
+//     this.getUserRoleList();
+//   });
+// }
 
 addForm: FormGroup;
   ngOnInit() {
     this.getpermissiondrop();
     this.getaccessdrop();
-    this.getUserRoleList();
-    console.log(this.arrdbadduser);
+//    this.getUserRoleList();
+ //   console.log(this.arrdbadduser);
     this.addForm = this.fb.group({
       id: [],
       RoleName: ['', Validators.required],

@@ -39,7 +39,7 @@ export class DefaultLayoutComponent implements OnInit {
     //  if(this.roleId == "2"){
     //   this.navItems  = this.navItems.slice(0, navItems.length-2);
     // }
-
+console.log(this.user);
 console.log(navItems);
   }
 

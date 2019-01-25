@@ -31,7 +31,7 @@ export class UsersComponent implements OnInit {
  //rolename =['clerk','manager'];
 // _url ='';
  //title = 'JSON to Table Example';
-  
+
 
 
   constructor(private addUser: AddUserService, public dialog: MatDialog,private httpService: HttpClient,
@@ -47,7 +47,7 @@ export class UsersComponent implements OnInit {
 
   displayedColumns = ['Firstname', 'Lastname', 'Username', 'UserEmail','UserPhone', 'Actions'];
   dataSource: any;
-  
+
 
 
   openCreate(): void {
@@ -94,14 +94,14 @@ export class UsersComponent implements OnInit {
     //   // }
     // );
    this.fetchUser();
-   
-     
+
+
   }
 
   ngOnDestroy(){
     this.dialog.closeAll();
   }
-  
+
 alertCtrl : any;
 alert:any;
   deleteUser(data) {
@@ -122,16 +122,16 @@ alert:any;
       }
 
     this.addUser.deleteUser(UserId).subscribe(res => {
-    
+
       console.log("success");
       console.log(res);
       this.fetchUser();
     });
   }
   }
-  
 
-  
+
+
 @Component({
   templateUrl: 'users-dialogue.component.html',
   styleUrls: ['users-dialogue.component.scss']
@@ -162,7 +162,7 @@ alert:any;
      // console.log(this.data35);
       console.log(this.data34);
     });
-   
+
  }
   constructor(
     public dialogRef: MatDialogRef<UsersComponent>,
@@ -203,7 +203,7 @@ console.log(createForm);
       this.router.navigate['/users']
       });
   }
-  
+
   ngOnInit(){
   this.getUserRoles();
   }
@@ -233,13 +233,13 @@ console.log(createForm);
      // console.log(this.data35);
       console.log(this.dataupdaterole);
     });
-   
+
     this.addUser.getUserRoleSelected(UserId).subscribe(res =>{
 
        this.data4 = res.RoleId;
-      console.log(this.data4);
+      // console.log(this.data4);
 
-      console.log(res);
+      // console.log(res);
 
     });
  }

@@ -39,7 +39,7 @@ export class AddUserService {
   }
 
   getUser(): Observable<any> {
-    return this.http.get(this.uri1 + '/api/User/GetUserTbls');
+    return this.http.get(this.uri1 + 'api/User/GetUserTbls');
   }
 
   getUserRole():Observable<any> {
@@ -64,6 +64,13 @@ export class AddUserService {
     return this.http.post(this.uri1 +'api/User/DeleteUser',UserId);
 
   }
+
+  roleAccPerm(data): Observable<any> {
+    console.log(data);
+    return this.http.post(this.uri1 +'api/UserRole/AddAccessPermissionTbl',data);
+
+  }
+
 
   // JSON Server Related APIs
   userRole(createForm): Observable<any> {

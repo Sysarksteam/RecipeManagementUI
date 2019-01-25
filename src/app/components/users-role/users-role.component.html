@@ -24,28 +24,28 @@
         </mat-select>
       </mat-form-field>
       <br>
-        <button class="btn btn-primary" (click)="createUser(createForm.value)">ADD</button>
+        <button class="btn btn-primary" (click)="createRole(createForm.value)">ADD</button>
         <br><br>
     </form>
 </div>
   <table *ngIf="arrdbadduser" class="table table-bordered">
   <thead>
     <tr text-align="center">
-      <td>RoleName</td>
+
       <td>Access</td>
       <td>Permission</td>
       <td>Action</td>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let dbdata of arrdbadduser">
-      <td text-align="center">{{dbdata.RoleName}}</td>
-      <td text-align="center">{{dbdata.Access.AccessName}}</td>
-      <td text-align="center">{{dbdata.Permission.PermissionName}}</td>
+    <tr>
+      <td text-align="center">{{arrdbadduser.AccessId}}</td>
+      <td text-align="center">{{arrdbadduser.PermissionId}}</td>
+      <!-- <td text-align="center">{{dbdata.Permission.PermissionName}}</td> -->
       <td>
         <div class="row" >
           <div class="col-sm-12 text-center">
-        <button class="btn btn-danger btn-md" id="btnClear" (click)="deleteUserRole(dbdata)">Delete</button>
+        <button class="btn btn-danger btn-md" id="btnClear" >Delete</button>
       </div>
       </div>
       </td>
