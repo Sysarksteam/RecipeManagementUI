@@ -23,6 +23,10 @@ export class AddUserService {
 
   }
 
+// create Role APi
+createUserRole(createRoleForm){
+
+}
 
   updateUser(createForm, UserId)
   {

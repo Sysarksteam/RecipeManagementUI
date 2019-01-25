@@ -1,0 +1,24 @@
+<div class="example-container">
+<h1 mat-dialog-title style="text-align: center">Add UserRole</h1>
+<div mat-dialog-content >
+  <form [formGroup]="createRoleForm" >
+      <mat-form-field >
+          <input matInput placeholder="Rolename" type="text" #RoleName   formControlName="RoleName" required>
+        </mat-form-field>
+         <mat-form-field>
+        <mat-select placeholder="Access" #Access [(value)]="selected1" formControlName="Access">
+          <mat-option *ngFor="let access of dataAce" [value]="access">{{access.AccessName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+   <mat-form-field>
+        <mat-select placeholder="Permission" #Permission [(value)]="selected" formControlName="Permission">
+          <mat-option *ngFor="let permision of dataper" [value]="permision">{{permision.PermissionName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button (click)="createUserRole(createRoleForm.value)"  type="submit" color="primary">Save</button>
+      <button mat-raised-button   (click)="onNoClick()" color="accent">Cancel</button>
+
+  </form>
+</div>
+</div>
+
