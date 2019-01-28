@@ -63,8 +63,11 @@ console.log(Object.values(this.dataper)[0]);
      this._data1.forEach(element => {
        this.data34[i++] = element.RoleName;
      });
+
      // console.log(this.data35);
+    let userid = localStorage.getItem('user');
       console.log(this.data34);
+      console.log(userid,"UserId")
     });
    
  }
@@ -125,19 +128,35 @@ arrdbadduser:any;
 //     this.getUserRoleList();
 //   });
 // }
+createUserRole(createRoleForm){
+console.log(createRoleForm)
+let UserId = JSON.parse(localStorage.getItem("user"));
+ let  rolePermisson: any = {
+   UserId: UserId,
+   RoleId: createRoleForm.RoleId
+ }
+ console.log(rolePermisson)
+}
 
-addForm: FormGroup;
+
+
+       // this.router.navigate(['list-user']);
+//       this.getUserRoleList();
+
+
+//addForm: FormGroup;
+createRoleForm: FormGroup;
   ngOnInit() {
     this.getpermissiondrop();
     this.getUserRoles();
     this.getaccessdrop();
 //    this.getUserRoleList();
  //   console.log(this.arrdbadduser);
-    this.addForm = this.fb.group({
+    this.createRoleForm = this.fb.group({
       id: [],
-      RoleName: ['', Validators.required],
-      AccessName: ['', Validators.required],
-      permissionName: ['', Validators.required]
+      RoleId: ['', Validators.required],
+      Access: ['', Validators.required],
+      Permission: ['', Validators.required]
     });
   }
 

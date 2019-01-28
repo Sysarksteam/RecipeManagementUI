@@ -1,8 +1,7 @@
 <div class="card">
   <div class="card-header">
    Users Role
-    <!--<button type="button" class="btn btn-primary pull-right" (click)="openModal(template)">Add User</button>-->
-    <button mat-raised-button (click)="openCreateRole()" class="btn btn-primary pull-right">Add UserRole</button>
+    <!--<button type="button" class="btn btn-primary pull-right" (click)="openModal(template)">Add User</button>-->   
   </div>
   <div class="card-body">
      <form [formGroup]="createRoleForm" >
@@ -10,11 +9,11 @@
           <input matInput placeholder="Rolename" type="text" #RoleName   formControlName="RoleName" required>
         </mat-form-field>-->
          <mat-form-field>
-        <mat-select  placeholder="Role" formControlName="RoleId" #RoleId  multiple>
+        <mat-select  placeholder="Role" formControlName="RoleId" #RoleId [(value)]="selectedrole">
           <mat-option *ngFor="let topping of _data1" [value]="topping.RoleId">{{topping.RoleName}}</mat-option>
         </mat-select>
       </mat-form-field>&nbsp;&nbsp;
-         <button mat-raised-button (click)="createUserRole()"  type="submit">Add New Role</button>
+         <button mat-raised-button (click)="createUserRoleNew()"  type="submit">Add New Role</button>
       <br>
          <mat-form-field>
         <mat-select placeholder="Access" #Access [(value)]="selected1" formControlName="Access">
@@ -28,7 +27,7 @@
         </mat-select>
       </mat-form-field>
       <br>
-      <button mat-raised-button (click)="createUserRole()"  type="submit">Add</button>
+      <button mat-raised-button (click)="createUserRole(createRoleForm.value)"  type="submit">Add</button>
 
   </form>
     </div>
