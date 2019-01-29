@@ -24,8 +24,9 @@ export class AddUserService {
   }
 
 // create Role APi
-createUserRole(createRoleForm){
+CreateUserRole(createRoleForm){
 
+    return this.http.post(this.uri1 + 'api/User/AddTempAccessPermissionTbl', createRoleForm);
 }
 
   updateUser(createForm, UserId)
@@ -67,6 +68,18 @@ createUserRole(createRoleForm){
     console.log(UserId);
     return this.http.post(this.uri1 +'api/User/DeleteUser',UserId);
 
+  }
+
+
+deleteUserRole(deleterole): Observable<any> {
+    //console.log(deleterole);
+    return this.http.post(this.uri1 +'api/User/DelTempAccessPermissionTbl',deleterole);
+
+  }
+
+createfinalsave(createRoleForm): Observable<any> {
+    //console.log(deleterole);
+    return this.http.post(this.uri1 +'api/UserRole/AddRoleTblAndRoleAccessPermissionTbl',createRoleForm);
   }
 
   // JSON Server Related APIs

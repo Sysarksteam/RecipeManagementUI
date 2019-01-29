@@ -23,70 +23,18 @@
       <td align="center">{{db.propertyname}}</td>
       <td align="center">{{db.length}}</td>
       <td align="center">{{db.datatype}}</td>
-      <!--<td>
-        <div class="row" >
-          <div class="col-sm-12 text-center">
-        <button class="btn btn-info btn-md " id="btnSearch" (click)="openUpdate(element)" >Edit</button>
-        <button class="btn btn-danger btn-md" id="btnClear" (click)="deleteUser(element)">Delete</button>
-      </div>
-      </div>
-      </td>-->
     </tr>
   </tbody>
 </table>
 <div id="outer">
-        <div class="inner"><button type="submit" (click)="openDialog()" class="btn btn-info msgBtn">Add Property</button></div>
-        <div class="inner"><button type="submit" class="btn btn-danger msgBtn2">Delete property</button></div>
+        <div class="inner"><button type="submit" (click)="openDialog()" class="btn msgBtn">Add Property</button></div>
+        <div class="inner"><button type="submit" class="btn msgBtn2">Delete property</button></div>
     </div>
     <br>
     <br>
-    <!--<div class="col-lg-12 row">
-      <div class="form-group  col-sm-2" >
-      <label>Propert Id</label>
-      <input type="text" class="form-control" id="propertyid" placeholder="Enter Propertyid" name="propertyid">
-    </div>
-     <div class="form-group col-sm-2">
-       <label>Type</label>
-    <select *ngIf="typedbjson" class="form-control "> 
-      <option *ngFor="let typedb of typedbjson">{{typedb.typename}}</option>
-      </select>
-      </div>
-      <div class="form-group  col-sm-2" >
-      <label>Length</label>
-      <input type="text" class="form-control" id="length" placeholder="Enter Length" name="length">
-    </div>
-    <div class="form-group  col-sm-2" >
-      <label>Options</label>
-           <table *ngIf="optionsdbjson" class="table table-bordered">
-  <thead>
-    <tr align="center">
-      <th *ngFor="let optionheader of optionsheader">
-        {{optionheader}}
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let dboption of optionsdbjson" >
-      <td align="center">{{dboption.id}}</td>
-      <td align="center">{{dboption.textvalue}}</td>
-    </tr>
-  </tbody>
-</table>
-    </div>
-    <div class="form-group col-sm-2" >
-      <label>Choice:</label>
-      <input type="text" class="form-control" id="choiceid" placeholder="Enter Id" name="choiceid">
-      <input type="text" class="form-control" id="choicename" placeholder="Enter Value" name="choicename">
-      <br/>
       <div id="outer">
-        <div class="inner"><button type="submit" class="btn btn-info msgBtn">Add</button></div>
-        <div class="inner"><button type="submit" class="btn btn-danger msgBtn2">Delete</button></div>
-            </div>
-          </div>
-      </div> -->
-      <div id="outer">
-        <div class="inner"><button type="submit" class="btn btn-success msgBtn">Save</button></div>
-        <div class="inner"><button type="submit" class="btn btn-warning msgBtn2">Cancel</button></div>
+        <div class="inner"><button type="submit" class="btn msgBtn">Save</button></div>
+        <div class="inner"><button type="submit" class="btn msgBtn2">Cancel</button></div>
             </div>
     </form>
     </div>

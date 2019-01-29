@@ -14,6 +14,7 @@ export class UsersRoleComponent implements OnInit {
 //   access =['READ','WRITE'];
 // permission =['Dashboard','Usermanagement'];
 userRole = new usersrole('rolename','access','permission');
+displayedColumns = ['Access','Permission','Action'];
 public data: any;
 createForm: FormGroup;
   constructor(
@@ -28,6 +29,11 @@ createForm: FormGroup;
    // roleid: ['', Validators.required]
     })
   }
+
+ 
+
+// console.log(userExists('fred')); // true
+// console.log(userExists('bred')); // false
 //arrdbadduser: string [];
 
 //Permission DropDown API
@@ -79,7 +85,9 @@ getaccessdrop(){
   this.addUser.getaccess().subscribe(res => {
  //console.log(res)
        this.dataAce = res;
-
+      //  let accessName: any = this.userExists(3,4);
+      //  console.log(accessName[0]);
+      //  console.log(accessName[1]);
      // console.log(this.data35);
       console.log(this.dataAce);
       console.log(Object.values(this.dataAce)[0]);
@@ -87,79 +95,141 @@ getaccessdrop(){
   });
 
 }
+
+
+ userExists(AccessId, PermId):any {
+   let  varName = '';
+   this.dataAce.forEach(el => {
+     if(el.AccessId === AccessId){
+      varName = el.AccessName; 
+     }
+     
+   });
+  let  varName2 = '';
+   this.dataper.forEach(el => {
+     if(el.PermissionId === PermId){
+      varName2 = el.PermissionName;
+     }
+   })
+   return [varName,varName2]; 
+}
+
+userids(Accessnam, Permname):any {
+   let  varNameid ;
+   this.dataAce.forEach(el => {
+     if(el.AccessName === Accessnam){
+      varNameid = el.AccessId; 
+     }
+     
+   });
+  let  varNameid2;
+   this.dataper.forEach(el => {
+     if(el.PermissionName === Permname){
+      varNameid2 = el.PermissionId;
+     }
+   })
+   return [varNameid,varNameid2]; 
+}
+
 arrdbadduser:any;
-// createUser(createForm) {
-//     let headers = new Headers({ 'Content-Type': 'application/json' });
-//     let options = new RequestOptions({ headers: headers });
-//     let body = JSON.stringify(createForm);
-//     return this.http.post('access', body, options );
-//   }
-// createRole(createForm){
-//   let UserId = JSON.parse(localStorage.getItem("user"));
-//   console.log(createForm);
-//  let  rolePermisson: any = {
-//    UserId: UserId,
-//    AccessId: createForm.Access.AccessId,
-//    PermissionId: createForm.Permission.PermissionId
-//  }
-//  console.log(rolePermisson);
-//  this.addUser.roleAccPerm(rolePermisson)
-//       .subscribe( data => {
-//    //     console.log(data);
-//         this.arrdbadduser = data;
-//         console.log(this.arrdbadduser)
 
+accesspertable: any;
+tablearr: any[]=[];
 
-//        // this.router.navigate(['list-user']);
-// //       this.getUserRoleList();
-//       });
-// }
-
-// getUserRoleList(){
-// this.addUser.getUserRoles().subscribe(res =>{
-//   console.log(res);
-//   this.arrdbadduser = res;
-// });
-// }
-
-// deleteUserRole(createForm){
-//   this.addUser.delUserRole(createForm.id).subscribe(res => {
-//     console.log(res);
-//     this.getUserRoleList();
-//   });
-// }
 createUserRole(createRoleForm){
-console.log(createRoleForm)
-let UserId = JSON.parse(localStorage.getItem("user"));
- let  rolePermisson: any = {
+  this.show1 = true;
+  this.hide = false;
+  this.show = true;
+  this.showc = false;
+  let UserId = JSON.parse(localStorage.getItem("user"));
+   let  rolePermisson: any = {
    UserId: UserId,
-   RoleId: createRoleForm.RoleId
+   AccessId:createRoleForm.Access,
+   PermissionId:createRoleForm.Permission
  }
- console.log(rolePermisson)
+console.log(rolePermisson)
+  this.addUser.CreateUserRole(rolePermisson).subscribe((res) => {
+    console.log(res);
+    let accessids = res.AccessId;
+    console.log(accessids);
+    let perids = res.PermissionId;
+    console.log(perids);
+   let accper = this.userExists(accessids,perids);
+   console.log(accper);
+   let tableobj = {AcessName:accper[0],
+   PermissionName:accper[1]};
+   this.tablearr.push(tableobj);
+   console.log(this.tablearr);
+  });
 }
 
 
 
-       // this.router.navigate(['list-user']);
-//       this.getUserRoleList();
+showc = false;
+hide= false;
+show= true;
+show1= true;
+createnewrole(){
 
+  this.hide = true;
+  this.show = false;
+  this.show1 = false;
+  this.showc = true;
 
-//addForm: FormGroup;
+}
+
+ deleteUserRoles(deleterole){
+  
+console.log(deleterole)
+let accessids = deleterole.AcessName;
+    console.log(accessids);
+    let perids = deleterole.PermissionName;
+    console.log(perids);
+   let accper = this.userids(accessids, perids);
+   console.log(accper);
+   let UserId = JSON.parse(localStorage.getItem("user"));
+   let  deleteroles: any = {
+   UserId: UserId,
+   AccessId:accper[0],
+   PermissionId:accper[1] 
+ }
+ console.log(deleteroles);
+ this.addUser.deleteUserRole(deleteroles).subscribe((res) => {
+  console.log(res);
+ });
+   }
+
 createRoleForm: FormGroup;
+
   ngOnInit() {
     this.getpermissiondrop();
     this.getUserRoles();
     this.getaccessdrop();
+   
+ //  console.log(accesname);
 //    this.getUserRoleList();
  //   console.log(this.arrdbadduser);
     this.createRoleForm = this.fb.group({
       id: [],
       RoleId: ['', Validators.required],
       Access: ['', Validators.required],
-      Permission: ['', Validators.required]
+      Permission: ['', Validators.required],
+      RoleName: ['', Validators.required]
     });
   }
 
+finalsave(createRoleForm){
+   let UserId = JSON.parse(localStorage.getItem("user"));
+   let  finalsave: any = {
+   UserId: UserId,
+   RoleName:createRoleForm.RoleName
+ }
+ console.log(finalsave)
+ //this.addUser.createfinalsave(finalsave).subscribe((res) => {
+ //  console.log(res);
+ //});
+
+}
 
 }
 export class usersrole{
