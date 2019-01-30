@@ -17,7 +17,7 @@ options;
 login(userName) {
  // console.log(userName);
   //console.log( this.http.get(this.domain + 'api/UserRole/ValidateUser?userName=', userName));
-  return this.http.get(this.domain + '/api/UserRole/ValidateUser?userName='+ userName)
+  return this.http.get(this.domain + '/api/User/ValidateUser?userName='+ userName)
   .pipe(map(res => {
     console.log(res);
     localStorage.setItem('user', JSON.stringify(res));
@@ -28,7 +28,7 @@ login(userName) {
 }
 
 loginpass(passWord,userId){  
-  return this.http.get(this.domain + 'api/UserRole/ValidatePassword?UserId=' + userId + '&password=' + passWord);
+  return this.http.get(this.domain + 'api/User/ValidatePassword?UserId=' + userId + '&password=' + passWord);
 }
 
 // Function to logout

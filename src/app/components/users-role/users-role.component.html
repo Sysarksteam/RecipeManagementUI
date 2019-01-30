@@ -6,11 +6,11 @@
   <div class="card-body">
      <form [formGroup]="createRoleForm" >
       <mat-form-field *ngIf="hide" >
-          <input matInput placeholder="Rolename" type="text" #RoleName   formControlName="RoleName" required>
+          <input matInput placeholder="Rolename"(click)="rolenameValidation(createRoleForm)" id="target" type="text" #RoleName   formControlName="RoleName" required>
         </mat-form-field>
          <mat-form-field *ngIf="show">
-        <mat-select  placeholder="Role" formControlName="RoleId" #RoleId [(value)]="selectedrole">
-          <mat-option *ngFor="let topping of _data1" [value]="topping.RoleId">{{topping.RoleName}}</mat-option>
+        <mat-select  placeholder="Role" (selectionChange)="updateUserRole($event)" formControlName="RoleId" #RoleId>
+          <mat-option *ngFor="let topping of _data1" [value]="topping">{{topping.RoleName}}</mat-option>
         </mat-select>
       </mat-form-field>&nbsp;&nbsp;
          <button *ngIf="show1" mat-raised-button (click)="createnewrole()"  type="submit">Add New Role</button>

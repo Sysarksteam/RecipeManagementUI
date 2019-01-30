@@ -29,6 +29,13 @@ CreateUserRole(createRoleForm){
     return this.http.post(this.uri1 + 'api/User/AddTempAccessPermissionTbl', createRoleForm);
 }
 
+//Update Role API
+ updateRole(createRoleForm)
+  {
+      return this.http.put(this.uri1 + 'api/User/UpdateAccessPermissionTbl', createRoleForm);
+  }
+
+
   updateUser(createForm, UserId)
   {
     const update_user  = {
@@ -52,16 +59,16 @@ CreateUserRole(createRoleForm){
   }
 
   getpermission():Observable<any> {
-    return this.http.get(this.uri1 + 'api/UserRole/GetPermission');
+    return this.http.get(this.uri1 + 'api/User/GetPermission');
   }
 
   getaccess():Observable<any> {
-    return this.http.get(this.uri1 + 'api/UserRole/GetAccessTbl');
+    return this.http.get(this.uri1 + 'api/User/GetAccessTbl');
   }
 
 
   getUserRoleSelected(UserId):Observable<any>{
-    return this.http.get(this.uri1 + 'api/UserRole/GetUser/'+UserId);
+    return this.http.get(this.uri1 + 'api/User/GetUser/'+UserId);
   }
 
   deleteUser(UserId): Observable<any> {
@@ -79,21 +86,8 @@ deleteUserRole(deleterole): Observable<any> {
 
 createfinalsave(createRoleForm): Observable<any> {
     //console.log(deleterole);
-    return this.http.post(this.uri1 +'api/UserRole/AddRoleTblAndRoleAccessPermissionTbl',createRoleForm);
+    return this.http.post(this.uri1 +'api/User/AddRoleTblAndRoleAccessPermissionTbl	',createRoleForm);
   }
 
-  // JSON Server Related APIs
-  userRole(createForm): Observable<any> {
-    return this.http.post(this.baseUrl+ 'userRoles', createForm);
-  }
-
-  getUserRoles(): Observable<any> {
-    return this.http.get(this.baseUrl+ 'userRoles',);
-  }
-
-  delUserRole(role): Observable<any> {
-  //  console.log(role);
-   return this.http.delete(this.baseUrl+ 'userRoles/'+ role);
-  }
 
 }
