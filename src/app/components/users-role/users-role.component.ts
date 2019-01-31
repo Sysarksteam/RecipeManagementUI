@@ -64,7 +64,7 @@ console.log(Object.values(this.dataper)[0]);
       console.log(this.data34);
       console.log(userid,"UserId")
     });
-   
+
  }
 //Access DropDown API
 
@@ -90,9 +90,9 @@ getaccessdrop(){
    let  varName = '';
    this.dataAce.forEach(el => {
      if(el.AccessId === AccessId){
-      varName = el.AccessName; 
+      varName = el.AccessName;
      }
-     
+
    });
   let  varName2 = '';
    this.dataper.forEach(el => {
@@ -100,7 +100,7 @@ getaccessdrop(){
       varName2 = el.PermissionName;
      }
    })
-   return [varName,varName2]; 
+   return [varName,varName2];
 }
 
 //Mapping Access and permission names's with Access and permission id's
@@ -108,9 +108,9 @@ userids(Accessnam, Permname):any {
    let  varNameid ;
    this.dataAce.forEach(el => {
      if(el.AccessName === Accessnam){
-      varNameid = el.AccessId; 
+      varNameid = el.AccessId;
      }
-     
+
    });
   let  varNameid2;
    this.dataper.forEach(el => {
@@ -118,7 +118,7 @@ userids(Accessnam, Permname):any {
       varNameid2 = el.PermissionId;
      }
    })
-   return [varNameid,varNameid2]; 
+   return [varNameid,varNameid2];
 }
 
 //Adding data to table Display in Front End
@@ -134,7 +134,7 @@ createUserRole(createRoleForm){
    let  rolePermisson: any = {
    UserId: UserId,
    AccessId:createRoleForm.Access,
-  
+
    PermissionId:createRoleForm.Permission
  }
 console.log(rolePermisson)
@@ -192,7 +192,7 @@ createnewrole(){
 }
 
  deleteUserRoles(deleterole){
-  
+
 console.log(deleterole)
 let accessids = deleterole.AcessName;
     console.log(accessids);
@@ -204,7 +204,7 @@ let accessids = deleterole.AcessName;
    let  deleteroles: any = {
    UserId: UserId,
    AccessId:accper[0],
-   PermissionId:accper[1] 
+   PermissionId:accper[1]
  }
  console.log(deleteroles);
  this.addUser.deleteUserRole(deleteroles).subscribe((res) => {
@@ -222,7 +222,7 @@ rolenameValidation(createRoleForm){
         console.log(rolename);
         let res1 = this._data4;
         console.log(res1);
-    
+
      });
 }
 _data4: any;
@@ -250,7 +250,7 @@ finalsave(createRoleForm){
    console.log(createRoleForm);
    let  finalsave: any = {
    UserId: UserId,
-   RoleName:createRoleForm.RoleName=="" ? createRoleForm.RoleId.RoleName : createRoleForm.RoleName; 
+   RoleName:createRoleForm.RoleName=="" ? createRoleForm.RoleId.RoleName : createRoleForm.RoleName
  }
  console.log(finalsave);
  this.addUser.createfinalsave(finalsave).subscribe((res) => {
