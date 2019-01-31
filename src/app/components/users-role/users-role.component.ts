@@ -250,7 +250,7 @@ finalsave(createRoleForm){
    console.log(createRoleForm);
    let  finalsave: any = {
    UserId: UserId,
-   RoleName:createRoleForm.RoleName=="" ? createRoleForm.RoleId.RoleName : createRoleForm.RoleName; 
+   RoleName:createRoleForm.RoleName=="" ? createRoleForm.RoleId.RoleName : createRoleForm.RoleName 
  }
  console.log(finalsave);
  this.addUser.createfinalsave(finalsave).subscribe((res) => {
