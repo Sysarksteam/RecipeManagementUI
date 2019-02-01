@@ -6,7 +6,7 @@
   <div class="card-body">
      <form [formGroup]="createRoleForm" >
       <mat-form-field *ngIf="hide" >
-          <input matInput placeholder="Rolename"(click)="rolenameValidation(createRoleForm)" id="target" type="text" #RoleName   formControlName="RoleName" required>
+          <input matInput placeholder="Rolename" (blur)="rolenameValidation(createForm,Rolenm)"  type="text" #RoleName   formControlName="RoleName" required>
         </mat-form-field>
          <mat-form-field *ngIf="show">
         <mat-select  placeholder="Role" (selectionChange)="updateUserRole($event)" formControlName="RoleId" #RoleId>
@@ -31,7 +31,7 @@
       <button mat-raised-button (click)="createUserRole(createRoleForm.value)"  type="submit">Add</button>
 <br>
 <br>
-<table class="table table-bordered">
+<table *ngIf="datasave?.length > 0" class="table table-bordered">
   <thead>
     <tr align="center">
       <th *ngFor="let displayedColumn of displayedColumns">
@@ -40,8 +40,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let db of tablearr" >
-      <td align="center">{{db.AcessName}}</td>
+    <tr *ngFor="let db of datasave" >
+      <td align="center">{{db.AccessName}}</td>
       <td align="center">{{db.PermissionName}}</td>
       <td align="center"><button class="btn btn-md" id="btnClear" (click)="deleteUserRoles(db)">Delete</button></td>
     </tr>
