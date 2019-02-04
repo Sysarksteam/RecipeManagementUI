@@ -25,6 +25,27 @@ createForm: FormGroup;
     })
   }
 
+//Module name and user id Object Creation
+
+modulename = "UserRoleManagement";
+aName:any;
+userid:any;
+objcreation(){
+
+this.userid = localStorage.getItem('user')
+this.aName = this.modulename;
+console.log(this.userid, this.aName);
+}
+
+//UserId And Modulename Based Api
+modulesUserIds(userid,aName){
+  console.log(userid,aName)
+  this.addUser.modulesUserId(userid,aName).subscribe(res =>{
+    console.log(res);
+  });
+}
+
+
 //Permission DropDown API
 selected:any;
 selected1:any;
@@ -159,6 +180,8 @@ console.log(event);
    UserId: UserId
  }
   this.addUser.updateRole(updateroles).subscribe((res) => {
+    this.datasave.length = 0;
+    // this.datasave.splice(0,this.datasave.length);
     console.log(res);
     let i=0;
     let accid:any;
@@ -174,6 +197,7 @@ console.log(event);
         perid = elem.PermissionName;
       }
     });
+
     this.datasave.push({
       AccessName :accid,
       PermissionName: perid
@@ -259,6 +283,8 @@ _data4: any;
     this.getUserRoles();
     this.getpermissiondrop();
     this.getaccessdrop();
+    this.objcreation();
+    this.modulesUserIds(this.userid,this.aName);
    // this.rolenameValidation(this.createRoleForm);
     
     // this.addUser.getUserRole().subscribe(res => {
@@ -288,6 +314,8 @@ finalsave(createRoleForm){
   console.log(res);
  });
 this.createRoleForm.reset();
+alert("Added Successfully");
+this.datasave.length = 0; 
 }
 
 //Cancel Button Function

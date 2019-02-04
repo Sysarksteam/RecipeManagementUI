@@ -79,7 +79,6 @@ CreateUserRole(createRoleForm){
 
 
 deleteUserRole(deleterole): Observable<any> {
-    //console.log(deleterole);
     return this.http.post(this.uri1 +'api/User/DelTempAccessPermissionTbl',deleterole);
 
   }
@@ -88,6 +87,10 @@ createfinalsave(createRoleForm): Observable<any> {
     //console.log(deleterole);
     return this.http.post(this.uri1 +'api/User/AddRoleTblAndRoleAccessPermissionTbl	',createRoleForm);
   }
+
+modulesUserId(userid,aName){  
+  return this.http.get(this.uri1 + 'api/User/GetAccessName?id=' + userid + '&aName=' + aName);
+}
 
 
 }

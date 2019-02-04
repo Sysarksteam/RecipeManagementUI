@@ -37,9 +37,18 @@ export class UsersComponent implements OnInit {
   constructor(private addUser: AddUserService, public dialog: MatDialog,private httpService: HttpClient,
     private router: Router,private modalService: BsModalService, private _http: HttpClient) {
   }
-  // enrolluser(user: user){
-  //   this._http.post<any>(this._url,user);
-  // }
+  
+  //Module name and user id Object Creation
+object2:any;
+modulename:any = "UserManagement";
+objcreation(){
+
+let userid = localStorage.getItem('user');
+this.object2 = { UserId:userid, ModuleName:this.modulename }
+console.log(this.object2);
+}
+
+
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }

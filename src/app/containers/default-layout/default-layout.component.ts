@@ -32,7 +32,19 @@ export class DefaultLayoutComponent implements OnInit {
       attributes: true
     });
   }
+
+  //User Id based modules Api
+userID:any;
+useridModulesfilter(userID){
+  this.userID = localStorage.getItem('user')
+  console.log(this.userID)
+  this.authUser.UseridsModulesFilter(this.userID).subscribe(res =>{
+    console.log(res);
+  });
+}
+
    ngOnInit() {
+     this.useridModulesfilter(this.userID);
      //Normal user will not have 'Users' menu
     //  this.userName = this.user.response[0].First_name + " " + this.user.response[0].Last_name;
     // this.roleId = this.user.response[0].User_Role_Id;
@@ -42,7 +54,6 @@ export class DefaultLayoutComponent implements OnInit {
 
 console.log(navItems);
   }
-
 
 
 

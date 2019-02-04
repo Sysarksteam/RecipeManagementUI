@@ -136,7 +136,15 @@ _data1=["role","role2","role3","role4"];
     this.dialogRef.close();
   }
   
- 
+ //Module name and user id Object Creation
+object3:any;
+modulename:any = "Recipe Management";
+objcreation(){
+
+let userid = localStorage.getItem('user');
+this.object3 = { UserId:userid, ModuleName:this.modulename }
+console.log(this.object3);
+}
   
  // export interface OPTIONS {
 //   value: string;

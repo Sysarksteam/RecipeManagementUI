@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
@@ -36,6 +37,11 @@ logout() {
   // this.authToken = null; // Set token to null
   // this.user = null; // Set user to null
   localStorage.clear(); // Clear local storage
+}
+
+UseridsModulesFilter(userID): Observable<any> {
+    return this.http.get(this.domain +'api/User/GetPermissionName/' + userID);
+
 }
 
 }
