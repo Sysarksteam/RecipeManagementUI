@@ -179,6 +179,10 @@ console.log(event);
    role: createRoleForm.value.RoleId,
    UserId: UserId
  }
+ this.addUser.addNewcancelBtn(UserId).subscribe((res) => {
+  console.log(res); 
+});
+
   this.addUser.updateRole(updateroles).subscribe((res) => {
     this.datasave.length = 0;
     // this.datasave.splice(0,this.datasave.length);
@@ -210,12 +214,17 @@ showc = false;
 hide= false;
 show= true;
 show1= true;
+userID:any;
 createnewrole(){
-
   this.hide = true;
   this.show = false;
   this.show1 = false;
   this.showc = true;
+  this.userID = localStorage.getItem('user')
+  console.log(this.userID)
+this.addUser.addNewcancelBtn(this.userID).subscribe((res) => {
+  console.log(res); 
+});
 
 }
 
@@ -324,6 +333,12 @@ createnewrolecancel(){
   this.show = true;
   this.show1 = true;
   this.showc = false;
+  this.userID = localStorage.getItem('user')
+  console.log(this.userID)
+this.addUser.addNewcancelBtn(this.userID).subscribe((res) => {
+console.log(res); 
+});
+
 
 }
 

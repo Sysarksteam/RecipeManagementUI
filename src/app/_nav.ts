@@ -6,18 +6,18 @@ export const navItems = [
   // },
 
   {
-    name: 'Users',
+    name: 'UserManagement',
     url: '/users',
     icon: 'icon-pencil',
 
   },
   {
-    name: 'Users Role',
+    name: 'UserRoleManagement',
     url: '/users-role',
     icon: 'icon-pencil',
   },
   {
-    name: 'Entity Management',
+    name: 'RecipeManagement',
     url: '/entity-type',
     icon: 'icon-pencil',
   },

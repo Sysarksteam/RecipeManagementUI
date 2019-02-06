@@ -88,8 +88,12 @@ createfinalsave(createRoleForm): Observable<any> {
     return this.http.post(this.uri1 +'api/User/AddRoleTblAndRoleAccessPermissionTbl	',createRoleForm);
   }
 
-modulesUserId(userid,aName){  
+modulesUserId(userid,aName): Observable<any>{  
   return this.http.get(this.uri1 + 'api/User/GetAccessName?id=' + userid + '&aName=' + aName);
+}
+
+addNewcancelBtn(userID): Observable<any>{
+  return this.http.delete(this.uri1 + 'api/User/DeleteTempAccessPermissionTblBasedOnUserId/' +userID)
 }
 
 

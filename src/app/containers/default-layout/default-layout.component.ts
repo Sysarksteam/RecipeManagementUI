@@ -35,22 +35,47 @@ export class DefaultLayoutComponent implements OnInit {
 
   //User Id based modules Api
 userID:any;
+navlist:any;
+navArray:any[];
+peruser:any;
+splicenav:any[]=[];
+
 useridModulesfilter(userID){
   this.userID = localStorage.getItem('user')
   console.log(this.userID)
+  this.navlist = navItems;
+  //this.navlist.length = 0;  
   this.authUser.UseridsModulesFilter(this.userID).subscribe(res =>{
     console.log(res);
-  });
+    console.log(this.navlist);
+    let j=0;
+    res.forEach(element =>{
+      this.splicenav[j++] = element;
+    })
+    console.log(this.splicenav)
+    // res.forEach(element => {
+     this.peruser = "UserRoleManagement";
+       console.log(this.peruser)  
+       
+    // });
+
+
+    let i;
+    let index:any;
+  for(i = 0; i < this.navlist.length; i++){ 
+  if ( this.navlist[i].name === this.peruser) {
+    this.navlist.splice(-i,1);
+   }  
+  }
+  
+  console.log(this.navlist);
+   
+ 
+});
 }
 
    ngOnInit() {
      this.useridModulesfilter(this.userID);
-     //Normal user will not have 'Users' menu
-    //  this.userName = this.user.response[0].First_name + " " + this.user.response[0].Last_name;
-    // this.roleId = this.user.response[0].User_Role_Id;
-    //  if(this.roleId == "2"){
-    //   this.navItems  = this.navItems.slice(0, navItems.length-2);
-    // }
 
 console.log(navItems);
   }
