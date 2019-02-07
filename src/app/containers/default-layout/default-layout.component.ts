@@ -20,7 +20,8 @@ export class DefaultLayoutComponent implements OnInit {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement = document.body;
-  constructor(@Inject(SESSION_STORAGE) private storage: WebStorageService, private authUser: UserService, private router: Router) {
+  constructor(@Inject(SESSION_STORAGE) private storage: WebStorageService, 
+  private authUser: UserService, private router: Router) {
 
     this.user = JSON.parse(localStorage.getItem("user"));
 
@@ -31,14 +32,14 @@ export class DefaultLayoutComponent implements OnInit {
     this.changes.observe(<Element>this.element, {
       attributes: true
     });
+    this.useridModulesfilter(this.userID);
   }
 
   //User Id based modules Api
 userID:any;
 navlist:any;
-navArray:any[];
-peruser:any;
 splicenav:any[]=[];
+combine:any;
 
 useridModulesfilter(userID){
   this.userID = localStorage.getItem('user')
@@ -53,30 +54,19 @@ useridModulesfilter(userID){
       this.splicenav[j++] = element;
     })
     console.log(this.splicenav)
-    // res.forEach(element => {
-     this.peruser = "UserRoleManagement";
-       console.log(this.peruser)  
-       
-    // });
 
-
-    let i;
-    let index:any;
-  for(i = 0; i < this.navlist.length; i++){ 
-  if ( this.navlist[i].name === this.peruser) {
-    this.navlist.splice(-i,1);
-   }  
-  }
-  
+  this.combine = this.navlist.filter(element => this.splicenav.includes(element.name));
+  console.log(this.combine)
+  this.navlist = this.combine;
   console.log(this.navlist);
    
  
 });
+ 
 }
 
-   ngOnInit() {
-     this.useridModulesfilter(this.userID);
 
+   ngOnInit() {
 console.log(navItems);
   }
 

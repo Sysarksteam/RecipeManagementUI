@@ -3,6 +3,7 @@ import { Component, OnInit , Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatIconRegistry, MatTableDataSource} from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import {DataSource} from '@angular/cdk/table';
+import { AddUserService } from '../../services/addUser.service';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -29,7 +30,7 @@ export class EntityTypeComponent implements OnInit {
   displayedColumns=['PropertyId','Property Type','Length','Data Type'];
   optionsheader = ['ID','Text'];
 
-  constructor(private httpService: HttpClient,public dialog: MatDialog) { }
+  constructor(private httpService: HttpClient, private addUser: AddUserService, public dialog: MatDialog) { }
   entitydbjson: string [];
   typedbjson: string [];
   optionsdbjson: string[];
@@ -45,8 +46,26 @@ openDialog(): void {
 
 
    }
+
+   //Module name and user id Object Creation
+object2:any;
+userid:any;
+aName;any;
+modulename = "Recipe Management";
+
+
+//UserId And Modulename Based Api
+modulesUserIds3(){
+  this.userid = localStorage.getItem('user');
+this.aName = this.modulename;
+  this.addUser.modulesUserId(this.userid,this.aName).subscribe(res =>{
+    console.log(res);
+  });
+}
+
   
   ngOnInit() {
+    this.modulesUserIds3();
     this.httpService.get('./assets/entity.json').subscribe(
       data => {
         this.entitydbjson = data as string [];	 // FILL THE ARRAY WITH DATA.
@@ -98,7 +117,7 @@ _data1=["role","role2","role3","role4"];
     public dialogRef: MatDialogRef<EntityTypeComponent>,
     private httpService: HttpClient,
     @Inject(MAT_DIALOG_DATA) public data: any,
-   // private addUser: AddUserService,
+    private addUser: AddUserService,
     private fb: FormBuilder,
     private router: Router
   ) {
@@ -136,15 +155,8 @@ _data1=["role","role2","role3","role4"];
     this.dialogRef.close();
   }
   
- //Module name and user id Object Creation
-object3:any;
-modulename:any = "Recipe Management";
-objcreation(){
-
-let userid = localStorage.getItem('user');
-this.object3 = { UserId:userid, ModuleName:this.modulename }
-console.log(this.object3);
-}
+  
+  
   
  // export interface OPTIONS {
 //   value: string;

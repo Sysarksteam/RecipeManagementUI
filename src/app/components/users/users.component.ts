@@ -39,13 +39,18 @@ export class UsersComponent implements OnInit {
   }
   
   //Module name and user id Object Creation
-object2:any;
-modulename:any = "UserManagement";
-objcreation(){
 
-let userid = localStorage.getItem('user');
-this.object2 = { UserId:userid, ModuleName:this.modulename }
-console.log(this.object2);
+userid:any;
+aName;any;
+modulename = "UserManagement";
+
+//UserId And Modulename Based Api
+modulesUserIds1(){
+  this.userid = localStorage.getItem('user');
+  this.aName = this.modulename;
+  this.addUser.modulesUserId(this.userid,this.aName).subscribe(res =>{
+    console.log(res);
+  });
 }
 
 
@@ -93,15 +98,7 @@ console.log(this.object2);
   }
 
   ngOnInit() {
-    // this.httpService.get('./assets/dbjson.json').subscribe(
-    //   data => {
-    //     this.arrdbjson = data as string [];	 // FILL THE ARRAY WITH DATA.
-    //      console.log(this.arrdbjson);
-    //   },
-    //   // (err: HttpErrorResponse) => {
-    //   //   console.log (err.message);
-    //   // }
-    // );
+   this.modulesUserIds1();
    this.fetchUser();
    
      

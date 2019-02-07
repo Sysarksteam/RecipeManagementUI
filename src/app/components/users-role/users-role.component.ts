@@ -30,17 +30,13 @@ createForm: FormGroup;
 modulename = "UserRoleManagement";
 aName:any;
 userid:any;
-objcreation(){
 
-this.userid = localStorage.getItem('user')
-this.aName = this.modulename;
-console.log(this.userid, this.aName);
-}
-
+_dataAccees:any;
 //UserId And Modulename Based Api
-modulesUserIds(userid,aName){
-  console.log(userid,aName)
-  this.addUser.modulesUserId(userid,aName).subscribe(res =>{
+modulesUserIds(){
+  this.userid = localStorage.getItem('user')
+  this.aName = this.modulename;
+  this.addUser.modulesUserId(this.userid,this.aName).subscribe(res =>{
     console.log(res);
   });
 }
@@ -173,7 +169,6 @@ dataupdate:any[]=[];
 //Update User Role
 updateUserRole(createRoleForm){
 console.log(createRoleForm)
-console.log(event);
   let UserId = JSON.parse(localStorage.getItem("user"));
    let  updateroles: any = {
    role: createRoleForm.value.RoleId,
@@ -220,6 +215,7 @@ createnewrole(){
   this.show = false;
   this.show1 = false;
   this.showc = true;
+  this.datasave.length = 0;
   this.userID = localStorage.getItem('user')
   console.log(this.userID)
 this.addUser.addNewcancelBtn(this.userID).subscribe((res) => {
@@ -292,14 +288,8 @@ _data4: any;
     this.getUserRoles();
     this.getpermissiondrop();
     this.getaccessdrop();
-    this.objcreation();
-    this.modulesUserIds(this.userid,this.aName);
-   // this.rolenameValidation(this.createRoleForm);
-    
-    // this.addUser.getUserRole().subscribe(res => {
-    //    console.log(res)
-    //    this._data4 = res;
-    //   });
+    this.modulesUserIds();
+
     this.createRoleForm = this.fb.group({
       id: [],
       RoleId: [''],
@@ -308,6 +298,8 @@ _data4: any;
       RoleName: ['']
     });
   }
+
+//Access Function
 
 
 //Final save To Db Function
@@ -333,6 +325,7 @@ createnewrolecancel(){
   this.show = true;
   this.show1 = true;
   this.showc = false;
+  
   this.userID = localStorage.getItem('user')
   console.log(this.userID)
 this.addUser.addNewcancelBtn(this.userID).subscribe((res) => {

@@ -17,7 +17,7 @@ export const navItems = [
     icon: 'icon-pencil',
   },
   {
-    name: 'RecipeManagement',
+    name: 'Recipe Management',
     url: '/entity-type',
     icon: 'icon-pencil',
   },
